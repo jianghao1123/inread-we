@@ -12,9 +12,10 @@
   margin-left: 8rpx;
 }
 .title {
-    font-size: 64rpx;
+    font-size: 68rpx;
     font-family: PingFangSC-Thin, sans-serif;
     margin-top: 18rpx;
+    font-weight: bold; 
 }
 .picture{
   margin-top: 36rpx;
@@ -37,9 +38,11 @@
 }
 .quotation-l{
   margin-top: 36rpx;
+  color: #fae100;
 }
 .quotation-r{
   align-self: flex-end;
+  color: #fae100;
 }
 .toggle{
   font-size: 30rpx;

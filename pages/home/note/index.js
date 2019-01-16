@@ -1,4 +1,7 @@
 // pages/home/note/index.js
+var Empty = require("../../../component/loading-container/emptyConstant.js");
+
+
 Page({
 
   /**
@@ -10,7 +13,8 @@ Page({
     page: 0,
     size: 10,
     more: false,
-    loading: true
+    emptyType: Empty.content,
+    type: 'DATA'
   },
 
   /**

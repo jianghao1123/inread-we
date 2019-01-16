@@ -1,0 +1,11 @@
+<!--component/loading-page/index.wxml-->
+
+<view class="mikepad-loading">
+  <view class="binding"></view>
+  <view class="pad">
+    <view class="line line1"></view>
+    <view class="line line2"></view>
+    <view class="line line3"></view>
+  </view>
+</view>
+  

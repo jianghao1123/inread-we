@@ -1,6 +1,4 @@
 <!--pages/home/note/index.wxml-->
-<view>
-  <note-item></note-item>
-  <scroll-view>
-  </scroll-view>
-</view>
+<loading-container class="container" emptyType="{{emptyType}}" type="{{type}}">
+  <scroll-view></scroll-view>
+</loading-container>

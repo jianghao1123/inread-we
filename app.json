@@ -6,8 +6,8 @@
     "pages/home/user/index"
   ],
   "window": {
-    "navigationBarBackgroundColor": "#f8f8f8",
-    "navigationBarTitleText": "Weapp",
+    "navigationBarBackgroundColor": "#FFF",
+    "navigationBarTitleText": "印记读书",
     "navigationBarTextStyle": "black",
     "backgroundTextStyle": "dark",
     "backgroundColor": "#f8f8f8"
