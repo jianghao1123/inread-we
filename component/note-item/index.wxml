@@ -3,7 +3,9 @@
     <text class='date'>01-02</text>
     <text class="title" >{{title}}</text>
     <image class="picture" src="{{picture}}" wx:if="{{picture}}" mode="top"></image>
+    <view class="iconfont icon-map icon-quotation_l quotation-l"></view>
     <text class="content">{{content}}</text>
+    <view class="iconfont icon-map icon-quotation_r quotation-r"></view>
     <view class="operation">
       <view class="author">{{author}}</view>
       <view class="iconfont icon-map icon-share"></view>
