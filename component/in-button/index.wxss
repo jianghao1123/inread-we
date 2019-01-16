@@ -1,0 +1,10 @@
+/* component/in-button/index.wxss */
+.btn{
+  font-size: 22rpx;
+  color: #000 !important;
+  text-align: center;
+  padding: 0 0;
+}
+.btn::after{
+  border: none;
+}

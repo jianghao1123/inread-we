@@ -1,0 +1,24 @@
+{
+  "pages": [
+    "pages/home/note/index",
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/home/user/index"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#f8f8f8",
+    "navigationBarTitleText": "Weapp",
+    "navigationBarTextStyle": "black",
+    "backgroundTextStyle": "dark",
+    "backgroundColor": "#f8f8f8"
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "connectSocket": 10000,
+    "uploadFile": 10000,
+    "downloadFile": 10000
+  },
+  "usingComponents": {
+    "note-item": "/component/note-item/index"
+  }
+}

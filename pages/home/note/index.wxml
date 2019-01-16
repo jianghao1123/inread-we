@@ -1,0 +1,6 @@
+<!--pages/home/note/index.wxml-->
+<view>
+  <note-item></note-item>
+  <scroll-view>
+  </scroll-view>
+</view>

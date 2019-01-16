@@ -1,0 +1,13 @@
+/* component/comment/index.wxss */
+.container{
+  line-height: 24rpx;
+}
+.user{
+  font-size: 24rpx;
+  font-weight: bold;
+  line-height: 24rpx;
+}
+.comment{
+  font-size: 24rpx;
+  line-height: 24rpx;
+}

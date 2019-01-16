@@ -1,0 +1,5 @@
+<!--component/in-button/index.wxml-->
+<button class="btn i-class">
+  <loading-s wx:if="{{ loading }}"/>
+  <text wx:else class="text">关注</text>
+</button>

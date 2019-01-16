@@ -1,0 +1,5 @@
+<!--component/comment/index.wxml-->
+<view class='container'>
+  <text class="user">{{user}}</text>
+  <text class="comment">{{comment}}</text>
+</view>
