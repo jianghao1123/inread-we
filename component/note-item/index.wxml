@@ -8,11 +8,11 @@
     <view class="iconfont icon-map icon-quotation_r quotation-r"></view>
     <view class="operation">
       <view class="author">{{author}}</view>
-      <view class="iconfont icon-map icon-share {{shareCount ? 'icon-selected' : ''}}"></view>
+      <image class="icon-share" src="../../assets/icon_share.svg" mode="aspectFill"></image>
       <text class="count">{{shareCount}}</text>
-      <view class="iconfont icon-map icon-like {{isLiked ? 'icon-selected' : ''}}"></view>
+      <image class="icon-like" src="../../assets/icon_like.svg" mode="aspectFill"></image>
       <text class="count">{{likeCount}}</text>
-      <view class="iconfont icon-map icon-comment {{commentCount ? 'icon-selected' : ''}}"></view>
+      <image class="icon-comment" src="../../assets/icon_comment.svg" mode="aspectFill"></image>
       <text class="count">{{commentCount}}</text>
     </view>
     <view wx:if="{{commentItems && commentItems.length > 0}}" class="conmment-layout">

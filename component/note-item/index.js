@@ -44,10 +44,6 @@ Component({
       type: Number,
       value: 0
     },
-    isLiked: {
-      type: Boolean,
-      value: false
-    },
     commentItems: {
       type: Array,
       value: []

@@ -10,7 +10,6 @@
   shareCount="{{item.shareNum}}"
   likeCount="{{item.likeNum}}"
   commentCount="{{item.commentNum}}"
-  isLiked="{{item.liked}}"
   >
   </note-item>
 </scroll-view>

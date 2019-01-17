@@ -1,6 +1,4 @@
 /* component/note-item/index.wxss */
-@import "../icon/index.wxss";
-
 .container {
     display: flex;
     flex-direction: column;
@@ -66,19 +64,18 @@
 }
 .icon-comment{
   margin-left: 42rpx;
-  font-size: 46rpx;
+  width: 46rpx;
+  height: 46rpx;
 }
 
 .icon-like{
   margin-left: 42rpx;
-  font-size: 46rpx;
-}
-.icon-selected{
-  color: #fae100;
-  font-size: 46rpx;
+  width: 46rpx;
+  height: 46rpx;
 }
 .icon-share{
-  font-size: 46rpx;
+  width: 46rpx;
+  height: 46rpx;
 }
 .count{
   font-size: 24rpx;
