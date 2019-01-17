@@ -4,7 +4,9 @@
 .container {
     display: flex;
     flex-direction: column;
-    padding: 46rpx 46rpx;
+    padding: 38rpx 38rpx;
+    margin-bottom: 24rpx;
+    background: #fff;
 }
 .date{
   color: #999;
@@ -12,7 +14,7 @@
   margin-left: 8rpx;
 }
 .title {
-    font-size: 68rpx;
+    font-size: 48rpx;
     font-family: PingFangSC-Thin, sans-serif;
     margin-top: 18rpx;
     font-weight: bold; 
@@ -71,6 +73,10 @@
   margin-left: 42rpx;
   font-size: 46rpx;
 }
+.icon-selected{
+  color: #fae100;
+  font-size: 46rpx;
+}
 .icon-share{
   font-size: 46rpx;
 }
@@ -78,6 +84,7 @@
   font-size: 24rpx;
   margin-left: 6rpx;
   color: #666;
+  margin-bottom: 50rpx;
   align-self: flex-start;
 }
 .follow{

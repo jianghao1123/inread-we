@@ -1,18 +1,18 @@
 <!--component/note-item/index.wxml-->
 <view class="container">
-    <text class='date'>01-02</text>
+    <text class='date'>{{date}}</text>
     <text class="title" >{{title}}</text>
-    <image class="picture" src="{{picture}}" wx:if="{{picture}}" mode="top"></image>
+    <image class="picture" src="{{picture}}" wx:if="{{picture}}" mode="widthFix"></image>
     <view class="iconfont icon-map icon-quotation_l quotation-l"></view>
     <text class="content">{{content}}</text>
     <view class="iconfont icon-map icon-quotation_r quotation-r"></view>
     <view class="operation">
       <view class="author">{{author}}</view>
-      <view class="iconfont icon-map icon-share"></view>
+      <view class="iconfont icon-map icon-share {{shareCount ? 'icon-selected' : ''}}"></view>
       <text class="count">{{shareCount}}</text>
-      <view class="iconfont icon-map icon-like"></view>
+      <view class="iconfont icon-map icon-like {{isLiked ? 'icon-selected' : ''}}"></view>
       <text class="count">{{likeCount}}</text>
-      <view class="iconfont icon-map icon-comment"></view>
+      <view class="iconfont icon-map icon-comment {{commentCount ? 'icon-selected' : ''}}"></view>
       <text class="count">{{commentCount}}</text>
     </view>
     <view wx:if="{{commentItems && commentItems.length > 0}}" class="conmment-layout">

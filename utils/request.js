@@ -23,6 +23,29 @@ function requestAll(url, data, method){
     })
 }
 
+/**
+ * 小程序的promise没有finally方法，自己扩展下
+ */
+Promise.prototype.finally = function (callback) {
+    var Promise = this.constructor;
+    return this.then(
+      function (value) {
+        Promise.resolve(callback()).then(
+          function () {
+            return value;
+          }
+        );
+      },
+      function (reason) {
+        Promise.resolve(callback()).then(
+          function () {
+            throw reason;
+          }
+        );
+      }
+    );
+}
+
 module.exports = {
     get: get,
     post: post

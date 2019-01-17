@@ -1,4 +1,17 @@
 <!--pages/home/note/index.wxml-->
 <loading-container class="container" emptyType="{{emptyType}}" type="{{type}}">
-  <scroll-view></scroll-view>
+<scroll-view>
+  <note-item wx:for="{{notes}}" wx:key="{{index}}" 
+  title="{{item.title}}"
+  picture="{{item.picture}}"
+  date="{{item.createDate}}"
+  content="{{item.content}}"
+  author="{{item.author}}"
+  shareCount="{{item.shareNum}}"
+  likeCount="{{item.likeNum}}"
+  commentCount="{{item.commentNum}}"
+  isLiked="{{item.liked}}"
+  >
+  </note-item>
+</scroll-view>
 </loading-container>

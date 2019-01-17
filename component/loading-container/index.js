@@ -10,6 +10,10 @@ Component({
     emptyType: {
       type: Number,
       value: EmptyConstant.content
+    },
+    errorType: {
+      type: String,
+      value: 'REQUEST_ERROR'
     }
   },
 

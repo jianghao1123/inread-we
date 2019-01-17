@@ -1,6 +1,6 @@
 // pages/home/note/index.js
 var Empty = require("../../../component/loading-container/emptyConstant.js");
-
+var request = require("../../../utils/request")
 
 Page({
 
@@ -10,11 +10,30 @@ Page({
   data: {
     // 文章列表
     notes: [],
-    page: 0,
+    emptyType: Empty.loading,
+  },
+
+  pageable: {
+    // 发起分页请求
+    loading: false,
+    page: 1,
     size: 10,
-    more: false,
-    emptyType: Empty.content,
-    type: 'DATA'
+    nomore: false
+  },
+
+  setPageable: function(pageable){
+    if(pageable.loading != null){
+      this.pageable.loading = pageable.loading;
+    }
+    if(pageable.page != null){
+      this.pageable.page = pageable.page;
+    }
+    if(pageable.size != null){
+      this.pageable.size = pageable.size;
+    }
+    if(pageable.nomore != null){
+      this.pageable.nomore = pageable.nomore;
+    }
   },
 
   /**
@@ -35,7 +54,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.setData({
+      emptyType: Empty.loading
+    });
+    this.fetchNoteItems();
   },
 
   /**
@@ -56,14 +78,14 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.fetchNoteItems(1);
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    this.fetchNoteItems();
   },
 
   /**
@@ -71,5 +93,49 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  fetchNoteItems: function (curPage=this.pageable.page) {
+    if(this.pageable.loading){
+      return;
+    }
+    this.setPageable({
+      loading: true
+    });
+    let that = this;
+    request.post("/inread-api/note/list"
+    , {page: curPage, size: this.pageable.size})
+    .then(res => {
+      if(curPage == 1){
+        that.setData({
+          emptyType: Empty.content
+        });
+        that.setData({
+          notes: []
+        });
+      }
+      if(res.data.data && res.data.data.records){
+        that.setData({
+          notes: that.data.notes.concat(res.data.data.records)
+        });
+      }
+      that.setPageable({
+        page: curPage + 1
+      });
+      console.log(res);
+    }).catch(error => {
+      if(curPage == 1){
+        that.setData({
+          emptyType: Empty.error
+        });
+      }else{
+
+      }
+      console.error(error);
+    }).finally(() => {
+      that.setPageable({
+        loading: false
+      });
+    });
   }
 })

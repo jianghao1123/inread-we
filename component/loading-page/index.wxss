@@ -1,20 +1,22 @@
 
 .mikepad-loading {
   transform: scale(1);
+  background: #fff;
+  padding-top: 320rpx;
 }
 
 .mikepad-loading .binding {
   content : '';
   width : 27px;
   height : 4px;
-  border : 2px solid #000;
+  border : 2px solid #fae100;
   margin : 0 auto;
 }
 
 .mikepad-loading .pad {
   width : 15px;
   height : 18px;
-  border : 2px solid #000;
+  border : 2px solid #fae100;
   border-top : 0;
   padding : 6px;
   margin : 0 auto;
@@ -23,7 +25,7 @@
 .mikepad-loading .line {
   width : 15px;
   margin-top : 4px;
-  border-top : 2px solid #000;
+  border-top : 2px solid #fae100;
   opacity : 0;
   -webkit-animation : writeline 3s infinite ease-in;
   animation : writeline 3s infinite ease-in;

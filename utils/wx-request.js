@@ -1,5 +1,4 @@
-import Promise from 'es6-promise';
-import queue from 'async/queue';
+import queue from './queue';
 
 let defaultConfig = {
   request: wx.request,

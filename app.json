@@ -6,7 +6,7 @@
     "pages/home/user/index"
   ],
   "window": {
-    "navigationBarBackgroundColor": "#FFF",
+    "navigationBarBackgroundColor": "#fae100",
     "navigationBarTitleText": "印记读书",
     "navigationBarTextStyle": "black",
     "backgroundTextStyle": "dark",
