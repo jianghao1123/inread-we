@@ -1,6 +1,6 @@
 <!--component/loading-abnor/index.wxml-->
 <view class="root-layout">
-  <abnor wx:if="{{emptyType == error || emptyType == empty}}" type="{{errorType}}"></abnor>
+  <abnor wx:if="{{emptyType == error || emptyType == empty}}" type="{{errorType}}" bind:abnortap="onAbnorTap"></abnor>
   <loading-page class="loading" wx:if="{{emptyType == loading}}"></loading-page>
   <!-- 显示主布局 -->
   <block wx:if="{{emptyType == content}}">

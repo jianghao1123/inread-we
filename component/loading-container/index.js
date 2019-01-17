@@ -31,6 +31,10 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    onAbnorTap(event) {
+      let detail = event.detail;
+      let option = {};
+      this.triggerEvent('abnortap', detail, option);
+    }
   }
 })
