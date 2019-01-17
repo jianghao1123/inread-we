@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "loading-container": "../../../component/loading-container/index"
+    "loading-container": "../../../component/loading-container/index",
+    "loadmore": "../../../component/loadmore/index"
   },
   "enablePullDownRefresh": true
 }
