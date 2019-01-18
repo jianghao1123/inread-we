@@ -27,13 +27,13 @@ export default class Pageable{
       // 初始化页面
       if(curPage == 1){
         if((!currentData || currentData.length == 0)){
-            if(context && context.data && context.data.emptyType){
+            if(context && context.data && context.data.hasOwnProperty("emptyType")){
                 context.setData({
                     emptyType: Empty.empty
                 });
             }
         }else{
-            if(context && context.data && context.data.emptyType){
+            if(context && context.data && context.data.hasOwnProperty("emptyType")){
                 context.setData({
                     emptyType: Empty.content
                 });
@@ -41,7 +41,7 @@ export default class Pageable{
         }
       }
       if(!append && receivedData < this.size){
-        if(context && context.data && context.data.nomore){
+        if(context && context.data && context.data.hasOwnProperty("nomore")){
             context.setData({
                 nomore: true
             });

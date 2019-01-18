@@ -1,9 +1,10 @@
 {
   "pages": [
     "pages/home/note/index",
-    "pages/index/index",
     "pages/logs/logs",
-    "pages/home/user/index"
+    "pages/home/user/index",
+    "pages/index/index",
+    "pages/login/index"
   ],
   "window": {
     "navigationBarBackgroundColor": "#fae100",

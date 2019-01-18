@@ -36,6 +36,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    if(this.data.notes.length > 0){
+      return;
+    }
     this.setData({
       emptyType: Empty.loading
     });
@@ -60,7 +63,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    this.fetchNoteItems(true);
+    this.fetchNoteItems(this.pageable.page, true);
   },
 
   /**
@@ -96,9 +99,11 @@ Page({
       timestamp: that.data.notes.length > 0 ? that.data.notes[0].timestamp : 0
     })
     .then(res => {
-      pageable.received(that, curPage, that.data.notes, res.data && res.data.data ? res.data.data.records : [], append)
-      console.log(res);
+      that.setData({
+        notes: that.pageable.received(that, curPage, that.data.notes, res.data && res.data.data ? res.data.data.records : [], append)
+      });
     }).catch(error => {
+      console.log(error);
       that.pageable.error(that, curPage == 1);
     }).finally(() => {
       that.pageable.complete();

@@ -1,4 +1,7 @@
 // component/note-item/index.js
+import login from "../../utils/login"
+
+
 Component({
   /**
    * 组件的属性列表
@@ -60,6 +63,23 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    onShareClick(event){
+      if(!login.getInstance().checkLogin()){
+        return;
+      }
+      console.log('click');
+    },
+    onLikeClick(event){
+      if(!login.getInstance().checkLogin()){
+        return;
+      }
+      console.log('click');
+    },
+    onCommentClick(event){
+      if(!login.getInstance().checkLogin()){
+        return;
+      }
+      console.log('click');
+    }
   }
 })
