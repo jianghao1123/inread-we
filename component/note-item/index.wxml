@@ -19,5 +19,6 @@
       <comment wx:for="{{commentItems}}" 
       user="{{item.fromUser ? item.fromUser.username : '未知'}}"
       comment="{{item.content}}"></comment>
+      <text class="comment-more">查看{{commentCount}}条评论</text>
     </view>
 </view>

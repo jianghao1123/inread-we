@@ -1,24 +1,23 @@
 <!--pages/home/note/index.wxml-->
-<view class="root-container">
 <loading-container class="loading-container" 
   emptyType="{{emptyType}}" type="{{type}}" bind:abnortap="onAbnorTap">
-<scroll-view >
-  <note-item wx:for="{{notes}}" wx:key="{{index}}" 
-  title="{{item.title}}"
-  picture="{{item.picture}}"
-  date="{{item.createDate}}"
-  content="{{item.content}}"
-  author="{{item.author}}"
-  shareCount="{{item.shareNum}}"
-  likeCount="{{item.likeNum}}"
-  commentCount="{{item.commentNum}}"
-  noteId="{{item.noteId}}"
-  index="{{index}}"
-  bind:commentClick="onNoteCommentClick"
-  >
-  </note-item>
-  <loadmore text="{{nomore ? '到底了' : '正在努力加载中...'}}" icon="{{true}}" is-end="{{nomore}}"></loadmore>
-</scroll-view>
+  <scroll-view >
+    <note-item wx:for="{{notes}}" wx:key="{{index}}" 
+    title="{{item.title}}"
+    picture="{{item.picture}}"
+    date="{{item.createDate}}"
+    content="{{item.content}}"
+    author="{{item.author}}"
+    shareCount="{{item.shareNum}}"
+    likeCount="{{item.likeNum}}"
+    commentCount="{{item.commentNum}}"
+    noteId="{{item.noteId}}"
+    index="{{index}}"
+    commentItems="{{item.comments}}"
+    bind:commentClick="onNoteCommentClick"
+    >
+    </note-item>
+    <loadmore text="{{nomore ? '到底了' : '正在努力加载中...'}}" icon="{{true}}" is-end="{{nomore}}"></loadmore>
+  </scroll-view>
+  <comment-input releaseFocus="{{releaseFocus}}" bind:commentSubmit="onCommentSubmit" inputValue="{{commentInputValue}}"></comment-input>
 </loading-container>
-<comment-input releaseFocus="{{releaseFocus}}" bind:commentSubmit="onCommentSubmit" inputValue="{{commentInputValue}}"></comment-input>
-</view>

@@ -91,9 +91,13 @@
   align-self: flex-start;
 }
 .conmment-layout{
-  background: #EFEFEF;
+  background: #F5F5F5;
   margin-top: 36rpx;
   overflow: hidden;
   border-radius: 18rpx;
   padding: 18rpx 18rpx;
+}
+.comment-more{
+  font-size: 26rpx;
+  color: #999999;
 }
