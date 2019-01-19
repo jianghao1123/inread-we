@@ -6,7 +6,7 @@
 }
 page {
   height: 100%;
-  color: #333;
+  background: #FFFFFF;
   -webkit-font-smoothing: antialiased;
   font-family: 'PingFang SC', Helvetica, 'STHeiti STXihei', 'Microsoft YaHei', Tohoma, Arial, sans-serif;
 }

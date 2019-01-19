@@ -3,7 +3,6 @@
     display: flex;
     flex-direction: column;
     padding: 38rpx 38rpx;
-    margin-bottom: 24rpx;
     background: #fff;
 }
 .date{
