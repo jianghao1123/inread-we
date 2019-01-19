@@ -16,7 +16,8 @@
       <text class="count">{{commentCount}}</text>
     </view>
     <view wx:if="{{commentItems && commentItems.length > 0}}" class="conmment-layout">
-      <comment></comment>
+      <comment wx:for="{{commentItems}}" 
+      user="{{item.fromUser ? item.fromUser.username : '未知'}}"
+      comment="{{item.content}}"></comment>
     </view>
-    <comment-input releaseFocus="{{releaseFocus}}"></comment-input>
 </view>

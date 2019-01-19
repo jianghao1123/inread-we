@@ -36,7 +36,7 @@ function requestAll(url, data, method){
           });
         }
       }
-      return res;
+      return res.data;
     });
 }
 

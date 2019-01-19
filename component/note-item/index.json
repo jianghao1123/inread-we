@@ -1,7 +1,6 @@
 {
   "component": true,
   "usingComponents": {
-    "comment": "../comment-item/index",
-    "comment-input": "../comment-input/index"
+    "comment": "../comment-item/index"
   }
 }

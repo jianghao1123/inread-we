@@ -13,7 +13,10 @@ Page({
     notes: [],
     emptyType: Empty.loading,
     // 没有更多了
-    nomore: false
+    nomore: false,
+    releaseFocus: false,
+    currentCommentClickIndex: 0,
+    commentInputValue: ''
   },
 
   pageable: new Pageable(),
@@ -22,9 +25,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
   },
-
+  onPageScroll() {
+    // Do something when page scroll
+    if(this.data.releaseFocus){
+      this.setData({
+        releaseFocus: !this.data.releaseFocus
+      });
+    }
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -100,7 +109,7 @@ Page({
     })
     .then(res => {
       that.setData({
-        notes: that.pageable.received(that, curPage, that.data.notes, res.data && res.data.data ? res.data.data.records : [], append)
+        notes: that.pageable.received(that, curPage, that.data.notes, res.data ? res.data.records : [], append)
       });
     }).catch(error => {
       console.log(error);
@@ -109,11 +118,57 @@ Page({
       that.pageable.complete();
     });
   },
-
+  // 网络异常点击
   onAbnorTap: function(){
     this.setData({
       emptyType: Empty.loading
     });
     this.fetchNoteItems();
+  },
+  // 点击评论
+  onNoteCommentClick: function(opt){
+    this.setData({
+      releaseFocus: !this.data.releaseFocus
+    });
+    console.log(opt.detail);
+    this.setData({
+      currentCommentClickIndex: opt.detail
+    });
+  },
+  // 提交评论
+  onCommentSubmit: function(opt){
+    wx.showLoading({
+      title: '正在提交...',
+    });
+    var that = this;
+    request.post(
+      "/inread-api/comment/add",
+      {
+        noteId: that.data.notes[that.data.currentCommentClickIndex].noteId,
+        content: opt.detail,
+        toUid: 0
+      }).then(res=>{
+      if(res && res.code == 0){
+        wx.showToast({
+          title: "评论成功",
+          icon: "none",
+          duration: 2000
+        });
+        var item = this.data.notes[that.data.currentCommentClickIndex]
+        item.commentNum = item.commentNum + 1
+        var key = "notes["+ that.data.currentCommentClickIndex + "]"
+        that.setData({
+          commentInputValue: '',
+          releaseFocus: false
+        });
+        this.setData({
+          // 这里使用键值对方式赋值
+          key: item
+          }, function () {})
+      }
+    }).catch(e=>{
+    }).finally(()=>{
+      wx.hideLoading();
+    });
   }
 })

@@ -91,8 +91,8 @@ export default class Login{
                     iv: userRes.iv,
                     userInfo: userRes.userInfo
                 }).then((resp)=>{
-                    if(resp && resp.data && resp.data.code == 0 && resp.data.data){
-                        token.setToken(resp.data.data);
+                    if(resp && resp.code === 0 && resp.data){
+                        token.setToken(resp.data);
                         wx.showToast({
                             title: "登录成功",
                             icon: "none",

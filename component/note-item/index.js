@@ -55,6 +55,10 @@ Component({
     noteId: {
       type: Number,
       value: 0
+    },
+    index: {
+      type: Number,
+      value: 0
     }
   },
 
@@ -82,8 +86,7 @@ Component({
     ,{ 
       noteId: this.properties.noteId,
     }).then(res=>{
-      if(res && res.data && res.data.data
-        && res.data.data.code === 0){
+      if(res && res.code === 0){
           this.setProperties({
             likeCount: likeCount + 1 
           });
@@ -91,9 +94,7 @@ Component({
     });
     },
     onCommentClick(event){
-      if(!login.getInstance().checkLogin()){
-        return;
-      }
+      this.triggerEvent('commentClick', this.properties.index);
     }
   }
 })

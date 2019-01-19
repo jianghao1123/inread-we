@@ -1,4 +1,6 @@
 // component/comment-input/index.js
+import request from '../../utils/request'
+
 Component({
   /**
    * 组件的属性列表
@@ -11,6 +13,10 @@ Component({
     placeholderText: {
       type: String,
       value: '说点什么吧.'
+    },
+    inputValue: {
+      type: String,
+      value: ''
     }
   },
 
@@ -18,7 +24,8 @@ Component({
    * 组件的初始数据
    */
   data: {
-    submitAble: false
+    submitAble: false,
+    inputValue: ''
   },
 
   /**
@@ -26,9 +33,10 @@ Component({
    */
   methods: {
     /**
-     * 点击回复
+     * 输入框文字变动
      */
     valueChange(e){
+      this.data.inputValue = e.detail.value;
       if(e.detail.value.length >= 1){
         this.setData({
           submitAble:true
@@ -38,6 +46,12 @@ Component({
           submitAble:false
       });
       }
+    },
+    submit(){
+      if(!this.data.inputValue){
+        return;
+      }
+      this.triggerEvent('commentSubmit', this.data.inputValue);
     }
   }
 })
