@@ -1,0 +1,36 @@
+.input-divider{
+    width: 100%;
+    border-top:1rpx #F2F2F2 solid;
+}
+.input-container{
+    display: flex;
+    width: 100%;
+    background: #FFF;
+    align-items: center;
+}
+.input-text{
+    background-color: #F2F2F2;
+    min-height: 34rpx;
+    max-height: 132rpx;
+    padding-top: 18rpx;
+    padding-left: 18rpx;
+    padding-bottom: 18rpx;
+    margin-top: 24rpx;
+    margin-left: 32rpx;
+    margin-bottom: 24rpx;
+    font-size: 28rpx;
+    flex-grow: 1;
+}
+.submit{
+    color: #C4C4C4;
+    height: 64rpx;
+    width: 146rpx;
+    font-size: 32rpx;
+    font-weight: bold;
+    line-height: 64rpx;
+    text-align: center;
+    align-self: center;
+}
+.submit-able{
+    color: #000000;
+}

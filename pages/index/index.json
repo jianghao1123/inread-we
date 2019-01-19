@@ -1,3 +1,5 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "comment-input": "../../component/comment-input/index"
+  }
 }

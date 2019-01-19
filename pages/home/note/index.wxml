@@ -11,6 +11,7 @@
   shareCount="{{item.shareNum}}"
   likeCount="{{item.likeNum}}"
   commentCount="{{item.commentNum}}"
+  noteId="{{item.noteId}}"
   >
   </note-item>
   <loadmore text="{{nomore ? '到底了' : '正在努力加载中...'}}" icon="{{true}}" is-end="{{nomore}}"></loadmore>

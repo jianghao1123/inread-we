@@ -1,1 +1,38 @@
 /* pages/login/index.wxss */
+.login-container{
+    background: #fce100;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    
+}
+.login-inread{
+    width: 180rpx;
+    height: 100rpx;
+    margin-top: 40rpx;
+}
+.login-sologan-container{
+    flex: 1;
+}
+.login-sologan{
+  width: 400rpx;
+  height: 200rpx;
+  margin-top: 100rpx;
+}
+.login-button{
+    height: 96rpx;
+    width: 80%;
+    background: #333;
+    border: none;
+    color: #FFFFEF;
+    font-size: 32rpx;
+    line-height: 96rpx;
+    font-weight: bold;
+    margin-bottom: 100rpx;
+}
+.login-button::after{
+    border: none
+}

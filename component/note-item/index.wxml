@@ -18,4 +18,5 @@
     <view wx:if="{{commentItems && commentItems.length > 0}}" class="conmment-layout">
       <comment></comment>
     </view>
+    <comment-input releaseFocus="{{releaseFocus}}"></comment-input>
 </view>

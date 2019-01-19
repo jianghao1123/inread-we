@@ -1,6 +1,11 @@
 <!--pages/login/index.wxml-->
-<view>
-    <button 
+<view class="login-container">
+	<image class="login-inread" src="../../assets/inread.png" mode="aspectFit"/>
+	<view class="login-sologan-container">
+		<image class="login-sologan" src="../../assets/sologan.png" mode="aspectFit"/>
+	</view>
+	<button 
+	class="login-button"
 	open-type="getUserInfo" 
-	bindgetuserinfo="bindGetUserInfo">授权登录</button>
+	bindgetuserinfo="bindGetUserInfo">微信登录</button>
 </view>

@@ -1,5 +1,6 @@
 // component/note-item/index.js
 import login from "../../utils/login"
+import request from '../../utils/request'
 
 
 Component({
@@ -50,6 +51,10 @@ Component({
     commentItems: {
       type: Array,
       value: []
+    },
+    noteId: {
+      type: Number,
+      value: 0
     }
   },
 
@@ -73,13 +78,22 @@ Component({
       if(!login.getInstance().checkLogin()){
         return;
       }
-      console.log('click');
+      request.post("/inread-api/like/note"
+    ,{ 
+      noteId: this.properties.noteId,
+    }).then(res=>{
+      if(res && res.data && res.data.data
+        && res.data.data.code === 0){
+          this.setProperties({
+            likeCount: likeCount + 1 
+          });
+      }
+    });
     },
     onCommentClick(event){
       if(!login.getInstance().checkLogin()){
         return;
       }
-      console.log('click');
     }
   }
 })
