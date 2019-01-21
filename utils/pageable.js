@@ -17,7 +17,7 @@ export default class Pageable{
      */
     received(context, curPage=this.page, currentData, receivedData, append=false){
         // 有数据则追加
-      if(receivedData && currentData){
+      if(receivedData && receivedData.length > 0 && currentData){
         if(append){
             currentData = [...receivedData, ...currentData];
         }else{
@@ -40,14 +40,14 @@ export default class Pageable{
             }
         }
       }
-      if(!append && receivedData < this.size){
+      if(!append && receivedData && receivedData.length < this.size){
         if(context && context.data && context.data.hasOwnProperty("nomore")){
             context.setData({
                 nomore: true
             });
         }
       }
-      if(!append && receivedData){
+      if(!append && receivedData && receivedData.length > 0){
           if(curPage == 1){
               this.page = curPage;
           }

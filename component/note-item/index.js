@@ -95,6 +95,9 @@ Component({
     },
     onCommentClick(event){
       this.triggerEvent('commentClick', this.properties.index);
+    },
+    onMoreCommentClick(e){
+      this.triggerEvent('moreCommentClick', this.properties.index);
     }
   }
 })

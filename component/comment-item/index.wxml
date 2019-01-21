@@ -1,5 +1,15 @@
-<!--component/comment/index.wxml-->
-<view class='container'>
-  <text class="user">{{user}}</text>
-  <text class="comment">{{comment}}</text>
+<!--component/comment-item/index.wxml-->
+<view class="comment-item-layout">
+    <user-avatar username="{{username}}"
+        avatar="{{avatar}}"
+        date="{{date}}"></user-avatar>
+    <view class="comment-content-layout">
+        <view class="comment-content">{{content}}</view>
+        <view class="comment-replay" wx:if="{{replyItems && replyItems.length > 0}}">
+            <comment-reply-item wx:for="{{replyItems}}" wx:key="{{index}}" 
+        user="{{item.fromUser ? item.fromUser.username : '未知'}}"
+        comment="{{item.content}}">
+            </comment-reply-item>
+        </view>
+    </view>
 </view>

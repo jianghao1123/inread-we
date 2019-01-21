@@ -1,0 +1,26 @@
+/* component/user-avatar/index.wxss */
+.avatar-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+.avatar{
+    width: 76rpx;
+    height: 76rpx;
+    border-radius: 12rpx;
+}
+.username{
+    font-size: 24rpx;
+    color: #000;
+    font-weight: bold;
+    line-height: 0rpx;
+    display: block;
+}
+.date{
+    color: #999;
+    font-size: 22rpx;
+    line-height: 0rpx;
+}
+.username-layout{
+    margin-top: 20rpx;
+    margin-left: 24rpx;
+}

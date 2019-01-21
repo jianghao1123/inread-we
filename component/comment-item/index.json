@@ -1,4 +1,7 @@
 {
   "component": true,
-  "usingComponents": {}
+  "usingComponents": {
+    "user-avatar": "../user-avatar/index",
+    "comment-reply-item": "../comment-reply-item/index"
+  }
 }

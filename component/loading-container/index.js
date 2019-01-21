@@ -9,7 +9,18 @@ Component({
   properties: {
     emptyType: {
       type: Number,
-      value: EmptyConstant.content
+      value: EmptyConstant.content,
+      observer(emptyType) {
+        if(emptyType == EmptyConstant.error){
+          this.setData({
+            errorType: "REQUEST_ERROR"
+          });
+        }else{
+          this.setData({
+            errorType: "DATA"
+          });
+        }
+      }
     },
     errorType: {
       type: String,

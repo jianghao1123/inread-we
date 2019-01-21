@@ -38,3 +38,6 @@
 .submit-able{
     color: #000000;
 }
+.input-text-empty{
+    font-size: 28rpx;
+}

@@ -1,4 +1,5 @@
-// component/comment-item/index.js
+// component/user-avatar/index.js
+import util from '../../utils/util'
 Component({
   /**
    * 组件的属性列表
@@ -14,15 +15,13 @@ Component({
     },
     date: {
       type: String,
-      value: ''
-    },
-    content: {
-      type: String,
-      value: ''
-    },
-    replyItems: {
-      type: Array,
-      value: null
+      value: '',
+      observer(date) {
+        let d = util.getDateDiff(date);
+        this.setData({
+          date: d
+        });
+      }
     }
   },
 

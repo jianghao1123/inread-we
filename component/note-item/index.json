@@ -1,6 +1,6 @@
 {
   "component": true,
   "usingComponents": {
-    "comment": "../comment-item/index"
+    "comment": "../comment-reply-item/index"
   }
 }

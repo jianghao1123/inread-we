@@ -13,7 +13,7 @@ export default {
   },
   'DATA': {
     image: 'https://s10.mogucdn.com/p2/161213/upload_27e7gegi3f9acl5e05f3951if5855_514x260.png',
-    title: '没有相关数据哦',
+    title: '这里空荡荡的',
     button: '',
     tip: ''
   },

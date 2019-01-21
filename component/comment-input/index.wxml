@@ -3,6 +3,7 @@
 <view class="input-container" hidden="{{!releaseFocus}}">
     <textarea class="input-text"
           id="input-text"
+          placeholder-class="input-text-empty" 
           bindinput="valueChange"
           maxlength="-1" 
           cursor-spacing="15" 

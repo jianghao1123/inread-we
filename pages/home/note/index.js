@@ -112,7 +112,6 @@ Page({
         notes: that.pageable.received(that, curPage, that.data.notes, res.data ? res.data.records : [], append)
       });
     }).catch(error => {
-      console.log(error);
       that.pageable.error(that, curPage == 1);
     }).finally(() => {
       that.pageable.complete();
@@ -169,6 +168,11 @@ Page({
     }).catch(e=>{
     }).finally(()=>{
       wx.hideLoading();
+    });
+  },
+  onMoreCommentClick: function(opt){
+    wx.navigateTo({
+      url: "../../comment/index?noteId=" + this.data.notes[opt.detail].noteId
     });
   }
 })

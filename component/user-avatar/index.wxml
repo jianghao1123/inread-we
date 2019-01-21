@@ -1,0 +1,8 @@
+<!--component/user-avatar/index.wxml-->
+<view class="avatar-container">
+    <image class="avatar" src="{{avatar}}" />
+        <view class="username-layout">
+            <text class="username">{{username}}</text>
+            <text class="date">{{date}}</text>
+        </view>
+</view>
