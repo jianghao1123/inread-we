@@ -21,7 +21,17 @@ export default class Pageable{
         if(append){
             currentData = [...receivedData, ...currentData];
         }else{
-            currentData = [...currentData, ...receivedData];
+            // 刷新且不是追加数据，直接替换原数据
+            if(curPage == 1){
+                if(context && context.data && context.data.hasOwnProperty("nomore")){
+                    context.setData({
+                        nomore: false
+                    });
+                }
+                currentData = receivedData;
+            }else{
+                currentData = [...currentData, ...receivedData];
+            }
         }
       }
       // 初始化页面

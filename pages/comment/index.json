@@ -1,7 +1,9 @@
 {
   "usingComponents": {
     "loading-container": "../../../component/loading-container/index",
-    "comment-item": "../../component/comment-item/index"
+    "comment-item": "../../component/comment-item/index",
+    "loadmore": "../../component/loadmore/index"
+
   },
   "enablePullDownRefresh": true
 }

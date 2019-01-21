@@ -8,9 +8,19 @@ Component({
       type: String,
       value: ""
     },
+    // 当前回复者id
+    uid: {
+      type: Number,
+      value: ""
+    },
     comment: {
       type: String,
       value: ""
+    },
+    // 回复谁
+    replyUser: {
+      type: String,
+      value: ''
     }
   },
 
@@ -25,6 +35,10 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    onReplyItemClick(){
+      this.triggerEvent('replyItemClick', this.properties.uid,{
+        composed: true
+      });
+    }
   }
 })

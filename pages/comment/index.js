@@ -2,6 +2,8 @@
 var Empty = require("../../component/loading-container/emptyConstant.js");
 var request = require("../../utils/request")
 import Pageable from '../../utils/pageable'
+import login from '../../utils/login'
+
 
 Page({
 
@@ -14,6 +16,11 @@ Page({
     emptyType: Empty.loading,
     // 没有更多了
     nomore: false,
+    // 点击了哪条评论
+    currentCommentClickIndex: 0,
+    // 回复谁
+    currentCommentReplyUid: 0,
+    commentInputValue: ''
   },
   pageable: new Pageable(),
   /**
@@ -68,7 +75,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    this.fetchComments();
   },
 
   /**
@@ -104,6 +111,38 @@ Page({
       emptyType: Empty.loading
     });
     this.fetchComments();
+  },
+  submitReply(opt){
+    let that = this;
+    login.getInstance().checkLogin(()=>{
+      wx.showLoading({
+        title: '正在提交...',
+      });
+      var that = this;
+      request.post(
+        "/inread-api/comment/add",
+        {
+          noteId: that.data.noteId,
+          content: opt.detail,
+          toUid: currentCommentReplyUid,
+          commentPid: that.data.comments[that.data.currentCommentClickIndex].id,
+        }).then(res=>{
+        // 成功
+        if(res && res.code == 0){
+        }
+      }).catch(e=>{
+      }).finally(()=>{
+        wx.hideLoading();
+      });
+    });
+  },
+  onReplyItemClick(event){
+    this.setData({
+      currentCommentReplyUid: event.detail
+    });
+  },
+  onClickReply(event){
+    
   }
 
 })

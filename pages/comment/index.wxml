@@ -8,7 +8,13 @@
           date="{{item.createTime}}"
           content="{{item.content}}"
           replyItems="{{item.replyItems}}"
+          replyItemClick="onReplyItemClick"
+          commentId="{{item.id}}"
+          clickReply="onClickReply"
+          replyItemCount="{{item.replyItemCount}}"
           >
       </comment-item>
     </view>
+    <loadmore text="{{nomore ? '到底了' : '正在努力加载中...'}}" icon="{{true}}" is-end="{{nomore}}"></loadmore>
+    <comment-input releaseFocus="{{releaseFocus}}" bind:commentSubmit="submitReply" inputValue="{{commentInputValue}}"></comment-input>
 </loading-container>

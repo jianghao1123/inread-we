@@ -1,5 +1,10 @@
 <!--component/comment/index.wxml-->
-<view class='container'>
+<view class='container' bindtap="onReplyItemClick">
   <text class="user">{{user}}</text>
+  <block wx:if="{{replyUser}}">
+    <text class="reply">回复</text>
+    <text class="user">{{replyUser}}</text>
+  </block>
+  <text class="user">：</text>
   <text class="comment">{{comment}}</text>
 </view>

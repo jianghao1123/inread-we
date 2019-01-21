@@ -7,6 +7,11 @@
   font-weight: bold;
   line-height: 24rpx;
 }
+.reply{
+  font-size: 24rpx;
+  line-height: 24rpx;
+  color: #333;
+}
 .comment{
   font-size: 24rpx;
   line-height: 24rpx;

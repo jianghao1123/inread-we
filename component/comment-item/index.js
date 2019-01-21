@@ -1,4 +1,6 @@
 // component/comment-item/index.js
+
+
 Component({
   /**
    * 组件的属性列表
@@ -23,6 +25,14 @@ Component({
     replyItems: {
       type: Array,
       value: null
+    },
+    commentId: {
+      type: Number,
+      value: 0
+    },
+    replyItemCount: {
+      type: Number,
+      value: 0
     }
   },
 
@@ -37,6 +47,10 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    onClickReply(){
+      this.triggerEvent('clickReply', this.properties.commentId,{
+        composed: true
+      });
+    }
   }
 })
