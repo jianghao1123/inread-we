@@ -6,7 +6,7 @@
 }
 .comment-content-layout{
     margin-left: 96rpx;
-    margin-top: 34rpx;
+    margin-top: 30rpx;
 }
 .comment-content{
     font-size: 28rpx;
