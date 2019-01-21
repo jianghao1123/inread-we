@@ -5,8 +5,8 @@
     flex-direction: column;
 }
 .comment-content-layout{
-    margin-left: 102rpx;
-    margin-top: 8rpx;
+    margin-left: 96rpx;
+    margin-top: 34rpx;
 }
 .comment-content{
     font-size: 28rpx;

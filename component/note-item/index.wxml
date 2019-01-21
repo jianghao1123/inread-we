@@ -1,5 +1,5 @@
 <!--component/note-item/index.wxml-->
-<view class="container">
+<view class="note-container">
     <text class='date'>{{date}}</text>
     <text class="title" >{{title}}</text>
     <image class="picture" src="{{picture}}" wx:if="{{picture}}" mode="widthFix"></image>

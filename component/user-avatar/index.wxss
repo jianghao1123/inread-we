@@ -1,26 +1,35 @@
 /* component/user-avatar/index.wxss */
 .avatar-container{
     display: flex;
-    flex-wrap: wrap;
+    width: 100%;
 }
 .avatar{
-    width: 76rpx;
-    height: 76rpx;
+    width: 74rpx;
+    height: 74rpx;
     border-radius: 12rpx;
 }
 .username{
+    flex-grow: 1;
+}
+.username-text{
     font-size: 24rpx;
     color: #000;
     font-weight: bold;
-    line-height: 0rpx;
-    display: block;
+}
+.comment-icon{
+    width: 32rpx;
+    height: 32rpx;
+}
+.comment-icon-left{
+    margin-right: 30rpx;
 }
 .date{
     color: #999;
     font-size: 22rpx;
-    line-height: 0rpx;
 }
 .username-layout{
-    margin-top: 20rpx;
+    width: 90%;
     margin-left: 24rpx;
+    display: flex;
+    align-items: center;
 }

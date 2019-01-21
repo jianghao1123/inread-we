@@ -1,8 +1,14 @@
 <!--component/user-avatar/index.wxml-->
 <view class="avatar-container">
     <image class="avatar" src="{{avatar}}" />
-        <view class="username-layout">
-            <text class="username">{{username}}</text>
-            <text class="date">{{date}}</text>
+    <view class="username-layout">
+        <view class="username">
+            <view class="username-text">{{username}}</view>
+            <view class="date">{{date}}</view>
         </view>
+        <view class="comment-operation">
+            <image class="comment-icon comment-icon-left" src="../../assets/icon_comment.svg" mode="aspectFill"></image>
+            <image class="comment-icon" src="../../assets/icon_like.svg" mode="aspectFill"></image>
+        </view>
+    </view>
 </view>

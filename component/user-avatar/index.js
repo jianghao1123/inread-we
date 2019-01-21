@@ -23,7 +23,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-
+    date: ''
   },
 
   /**
@@ -31,5 +31,10 @@ Component({
    */
   methods: {
 
+  },
+  ready: function () {
+    this.setData({
+      date: util.getDateDiff(this.properties.date)
+    });
   }
 })
