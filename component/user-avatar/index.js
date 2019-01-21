@@ -15,13 +15,7 @@ Component({
     },
     date: {
       type: String,
-      value: '',
-      observer(date) {
-        let d = util.getDateDiff(date);
-        this.setData({
-          date: d
-        });
-      }
+      value: ''
     }
   },
 
