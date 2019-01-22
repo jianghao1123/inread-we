@@ -152,8 +152,9 @@ Page({
           icon: "none",
           duration: 2000
         });
-        var item = this.data.notes[that.data.currentCommentClickIndex]
-        item.commentNum = item.commentNum + 1
+        var item = this.data.notes[that.data.currentCommentClickIndex];
+        item.commentNum = item.commentNum + 1;
+        item.comments = [...item.comments, res.data];
         that.setData({
           commentInputValue: '',
           releaseFocus: false
@@ -161,7 +162,7 @@ Page({
         var key = "notes["+ that.data.currentCommentClickIndex + "]"
         this.setData({
           // 这里使用键值对方式赋值
-          key: item
+          [key]: item
           }, function () {})
       }
     }).catch(e=>{

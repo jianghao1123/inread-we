@@ -197,10 +197,11 @@ Page({
         });
         var item = that.data.comments[index];
         item.likeNum += 1;
+        item.replyItems = [...item.replyItems, res.data];
         var key = "comments["+ index + "]"
         this.setData({
           // 这里使用键值对方式赋值
-          key: item
+          [key]: item
           }, function () {})
       }).catch(e=>{
         console.log(e);
