@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/comment/index",
     "pages/home/note/index",
+    "pages/comment/index",
     "pages/index/index",
     "pages/login/index",
     "pages/logs/logs",

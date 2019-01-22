@@ -1,5 +1,5 @@
 /* component/note-item/index.wxss */
-.container {
+.note-container {
     display: flex;
     flex-direction: column;
     padding: 38rpx 38rpx;

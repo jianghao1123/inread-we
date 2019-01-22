@@ -53,6 +53,9 @@ Component({
   methods: {
     onClickReply(){
       this.triggerEvent('clickReply', this.properties.commentId);
+    },
+    onMoreCommentClick(){
+      this.triggerEvent('clickMoreComment', this.properties.commentId);
     }
   }
 })

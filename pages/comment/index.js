@@ -11,7 +11,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    noteId: 2,
+    noteId: 0,
     comments: [],
     emptyType: Empty.loading,
     // 没有更多了
@@ -22,14 +22,25 @@ Page({
     currentCommentId: 0,
     // 回复谁
     currentCommentReplyUid: 0,
-    commentInputValue: ''
+    commentInputValue: '',
+    // 评论详情
+    comment: null
   },
   pageable: new Pageable(),
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    if(options.comment){
+      this.setData({
+        comment: options.comment
+      });
+    }
+    if(options.noteId){
+      this.setData({
+        noteId: options.noteId
+      });
+    }
   },
   onPageScroll() {
     // Do something when page scroll
@@ -168,8 +179,8 @@ Page({
           return;
         }
         let index = 0;
-        for(let comment in that.data.comments){
-          if(comment.id === event.detail){
+        for(let pos in that.data.comments){
+          if(that.data.comments[pos].id == event.detail){
             break;
           }
           index++;
@@ -200,5 +211,21 @@ Page({
   
       });
     });
+  },
+  onClickMoreComment(event){
+    let index = 0;
+    for(let pos in this.data.comments){
+      if(this.data.comments[pos].id == event.detail){
+        break;
+      }
+      index++;
+    }
+    if(index >= this.data.comments.length){
+      return;
+    }
+    let commentStr = JSON.stringify(this.data.comments[index]);
+    wx.navigateTo({
+      url: 'index?comment=' + commentStr
+    })
   }
 })

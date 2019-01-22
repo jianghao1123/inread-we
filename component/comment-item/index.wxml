@@ -7,7 +7,7 @@
         commentId="{{commentId}}"></user-avatar>
     <view class="comment-content-layout">
         <view class="comment-content" bindtap="onClickReply">{{content}}</view>
-        <view class="comment-replay" wx:if="{{replyItems && replyItems.length > 0}}" bindtap="onClickReply">
+        <view class="comment-replay" wx:if="{{replyItems && replyItems.length > 0}}" bindtap="onMoreCommentClick">
             <comment-reply-item wx:for="{{replyItems}}" wx:key="{{index}}" 
         user="{{item.fromUser ? item.fromUser.username : '未知'}}"
         comment="{{item.content}}" replyUser="{{item.toUser.username}}">

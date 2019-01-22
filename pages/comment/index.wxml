@@ -1,6 +1,23 @@
 <!--pages/comment/index.wxml-->
 <loading-container class="loading-container" 
   emptyType="{{emptyType}}" type="{{type}}" bind:abnortap="onAbnorTap">
+  <block wx:if="{{comment}}">
+    <comment-item 
+          avatar="{{item.fromUser ? item.fromUser.avatar : ''}}"
+          username="{{item.fromUser ? item.fromUser.username : ''}}"
+          date="{{item.createTime}}"
+          content="{{item.content}}"
+          replyItems="{{item.replyItems}}"
+          bind:replyItemClick="onReplyItemClick"
+          commentId="{{item.id}}"
+          likeNum="{{item.likeNum}}"
+          bind:clickReply="onClickReply"
+          bind:clickLike="onClickLike"
+          replyItemCount="{{item.replyItemCount}}"
+          bind:clickMoreComment="onClickMoreComment"
+          >
+      </comment-item>
+    </block>
     <view wx:for="{{comments}}" wx:key="{{index}}" class="comment-item-divider">
       <comment-item 
           avatar="{{item.fromUser ? item.fromUser.avatar : ''}}"
@@ -14,6 +31,7 @@
           bind:clickReply="onClickReply"
           bind:clickLike="onClickLike"
           replyItemCount="{{item.replyItemCount}}"
+          bind:clickMoreComment="onClickMoreComment"
           >
       </comment-item>
     </view>
