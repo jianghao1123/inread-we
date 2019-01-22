@@ -4,9 +4,6 @@ var Empty = require("../component/loading-container/emptyConstant.js");
  * 分页
  */
 export default class Pageable{
-    page = 1;
-    size = 10;
-    loading = false;
     /**
      * 分页收到数据的处理
      * @param {当前页面上下文} context 
@@ -15,19 +12,17 @@ export default class Pageable{
      * @param {接收到的数据} receivedData 
      * @param {刷新页面是否采用追加模式} append 
      */
-    received(context, curPage=this.page, currentData, receivedData, append=false){
+    received(context, curPage=this.data.page.page, currentData, receivedData, append=false){
         // 有数据则追加
-      if(receivedData && receivedData.length > 0 && currentData){
+      if(receivedData && receivedData.length > 0){
         if(append){
             currentData = [...receivedData, ...currentData];
         }else{
             // 刷新且不是追加数据，直接替换原数据
             if(curPage == 1){
-                if(context && context.data && context.data.hasOwnProperty("nomore")){
-                    context.setData({
-                        nomore: false
-                    });
-                }
+                context.setData({
+                    'page.nomore': false
+                });
                 currentData = receivedData;
             }else{
                 currentData = [...currentData, ...receivedData];
@@ -37,45 +32,41 @@ export default class Pageable{
       // 初始化页面
       if(curPage == 1){
         if((!currentData || currentData.length == 0)){
-            if(context && context.data && context.data.hasOwnProperty("emptyType")){
-                context.setData({
-                    emptyType: Empty.empty
-                });
-            }
-        }else{
-            if(context && context.data && context.data.hasOwnProperty("emptyType")){
-                context.setData({
-                    emptyType: Empty.content
-                });
-            }
-        }
-      }
-      if(!append && receivedData && receivedData.length < this.size){
-        if(context && context.data && context.data.hasOwnProperty("nomore")){
             context.setData({
-                nomore: true
+                'page.emptyType': Empty.empty
+            });
+        }else{
+            context.setData({
+                'page.emptyType': Empty.content
             });
         }
       }
+      if(!append && (!receivedData || receivedData.length < context.data.page.size)){
+        context.setData({
+            'page.nomore': true
+        });
+      }
       if(!append && receivedData && receivedData.length > 0){
           if(curPage == 1){
-              this.page = curPage;
+            context.data.page.page = 1;
           }
-        this.page++;
+          context.data.page.page = context.data.page.page + 1;
       }
       return currentData;
     }
 
     error(context, refresh){
-        if(refresh && context && context.data && context.data.emptyType){
+        if(refresh){
             context.setData({
-                emptyType: Empty.error
+                'page.emptyType': Empty.error
             });
         }
     }
 
-    complete(){
-        this.loading = false;
+    complete(context){
+        context.setData({
+            'page.loading': false
+        });
         wx.stopPullDownRefresh()
     }
 }

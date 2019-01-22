@@ -2,6 +2,7 @@
 var Empty = require("../../component/loading-container/emptyConstant.js");
 var request = require("../../utils/request")
 import Pageable from '../../utils/pageable'
+import PageLoad from '../../utils/page'
 import login from '../../utils/login'
 
 
@@ -13,9 +14,8 @@ Page({
   data: {
     noteId: 0,
     comments: [],
-    emptyType: Empty.loading,
+    page: new PageLoad(),
     // 没有更多了
-    nomore: false,
     releaseFocus: false,
     // 点击了哪条评论
     currentCommentClickIndex: 0,
@@ -33,7 +33,7 @@ Page({
   onLoad: function (options) {
     if(options.comment){
       this.setData({
-        comment: options.comment
+        comment: JSON.parse(options.comment)
       });
     }
     if(options.noteId){
@@ -64,9 +64,9 @@ Page({
     if(this.data.comments.length > 0){
       return;
     }
-    this.setData({
-      emptyType: Empty.loading
-    });
+    // this.setData({
+    //   emptyType: Empty.loading
+    // });
     this.fetchComments();
   },
 
@@ -81,7 +81,6 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
   },
 
   /**
@@ -95,6 +94,9 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+    if(this.data.page.nomore){
+      return;
+    }
     this.fetchComments();
   },
 
@@ -105,15 +107,15 @@ Page({
 
   },
 
-  fetchComments: function(curPage = this.pageable.page){
-    if(this.pageable.loading){
+  fetchComments: function(curPage = this.data.page.page){
+    if(this.data.page.loading){
       return;
     }
-    this.pageable.loading = true;
+    this.data.page.loading = true;
     let that = this;
     request.post("/inread-api/comment/list",{
       "page": curPage,
-      "size": this.pageable.size,
+      "size": this.data.page.size,
       "noteId": this.data.noteId
     }).then(res=>{
       that.setData({
@@ -122,7 +124,7 @@ Page({
     }).catch(e=>{
       that.pageable.error(that, curPage == 1);
     }).finally(()=>{
-      that.pageable.complete();
+      that.pageable.complete(that);
     });
   },
   // 网络异常点击

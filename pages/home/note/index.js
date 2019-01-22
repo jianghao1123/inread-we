@@ -2,6 +2,7 @@
 var Empty = require("../../../component/loading-container/emptyConstant.js");
 var request = require("../../../utils/request")
 import Pageable from '../../../utils/pageable'
+import PageLoad from '../../../utils/page'
 
 Page({
 
@@ -11,9 +12,8 @@ Page({
   data: {
     // 文章列表
     notes: [],
-    emptyType: Empty.loading,
     // 没有更多了
-    nomore: false,
+    page: new PageLoad(),
     releaseFocus: false,
     currentCommentClickIndex: 0,
     commentInputValue: ''
@@ -48,9 +48,6 @@ Page({
     if(this.data.notes.length > 0){
       return;
     }
-    this.setData({
-      emptyType: Empty.loading
-    });
     this.fetchNoteItems();
   },
 
@@ -72,13 +69,16 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    this.fetchNoteItems(this.pageable.page, true);
+    this.fetchNoteItems(this.data.page.page, true);
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+    if(this.data.page.nomore){
+      return;
+    }
     this.fetchNoteItems();
   },
 
@@ -94,16 +94,16 @@ Page({
    * @param {当前页} curPage 
    * @param {是否追加数据，true会忽略curPage} append 
    */
-  fetchNoteItems: function (curPage=this.pageable.page, append = false) {
-    if(this.pageable.loading){
+  fetchNoteItems: function (curPage=this.data.page.page, append = false) {
+    if(this.data.page.loading){
       return;
     }
-    this.pageable.loading = true;
+    this.data.page.loading = true;
     let that = this;
     request.post("/inread-api/note/list"
     ,{ 
       page: curPage,
-      size: this.pageable.size,
+      size: this.data.page.size,
       append: append,
       timestamp: that.data.notes.length > 0 ? that.data.notes[0].timestamp : 0
     })
@@ -114,13 +114,13 @@ Page({
     }).catch(error => {
       that.pageable.error(that, curPage == 1);
     }).finally(() => {
-      that.pageable.complete();
+      that.pageable.complete(that);
     });
   },
   // 网络异常点击
   onAbnorTap: function(){
     this.setData({
-      emptyType: Empty.loading
+      "page.emptyType": Empty.loading
     });
     this.fetchNoteItems();
   },
