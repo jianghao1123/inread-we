@@ -33,6 +33,10 @@ Component({
     replyItemCount: {
       type: Number,
       value: 0
+    },
+    likeNum: {
+      type: Number,
+      value: 0
     }
   },
 
@@ -48,9 +52,7 @@ Component({
    */
   methods: {
     onClickReply(){
-      this.triggerEvent('clickReply', this.properties.commentId,{
-        composed: true
-      });
+      this.triggerEvent('clickReply', this.properties.commentId);
     }
   }
 })

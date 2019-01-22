@@ -7,8 +7,9 @@
             <view class="date">{{date}}</view>
         </view>
         <view class="comment-operation">
-            <image class="comment-icon comment-icon-left" src="../../assets/icon_comment.svg" mode="aspectFill"></image>
-            <image class="comment-icon" src="../../assets/icon_like.svg" mode="aspectFill"></image>
+            <image class="comment-icon comment-icon-left" src="../../assets/icon_comment.svg" mode="aspectFill" bindtap="onClickReply"></image>
+            <image class="comment-icon" src="../../assets/icon_like.svg" mode="aspectFill" bindtap="onClickLike"></image>
+            <text class="count">{{likeNum}}</text>
         </view>
     </view>
 </view>

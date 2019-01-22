@@ -8,9 +8,11 @@
           date="{{item.createTime}}"
           content="{{item.content}}"
           replyItems="{{item.replyItems}}"
-          replyItemClick="onReplyItemClick"
+          bind:replyItemClick="onReplyItemClick"
           commentId="{{item.id}}"
-          clickReply="onClickReply"
+          likeNum="{{item.likeNum}}"
+          bind:clickReply="onClickReply"
+          bind:clickLike="onClickLike"
           replyItemCount="{{item.replyItemCount}}"
           >
       </comment-item>

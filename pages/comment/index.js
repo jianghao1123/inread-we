@@ -16,8 +16,10 @@ Page({
     emptyType: Empty.loading,
     // 没有更多了
     nomore: false,
+    releaseFocus: false,
     // 点击了哪条评论
     currentCommentClickIndex: 0,
+    currentCommentId: 0,
     // 回复谁
     currentCommentReplyUid: 0,
     commentInputValue: ''
@@ -29,7 +31,14 @@ Page({
   onLoad: function (options) {
 
   },
-
+  onPageScroll() {
+    // Do something when page scroll
+    if(this.data.releaseFocus){
+      this.setData({
+        releaseFocus: !this.data.releaseFocus
+      });
+    }
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -124,8 +133,8 @@ Page({
         {
           noteId: that.data.noteId,
           content: opt.detail,
-          toUid: currentCommentReplyUid,
-          commentPid: that.data.comments[that.data.currentCommentClickIndex].id,
+          toUid: that.data.currentCommentReplyUid,
+          commentPid: that.data.currentCommentId,
         }).then(res=>{
         // 成功
         if(res && res.code == 0){
@@ -142,7 +151,54 @@ Page({
     });
   },
   onClickReply(event){
-    
+    this.setData({
+      releaseFocus: !this.data.releaseFocus
+    });
+    this.setData({
+      currentCommentId: event.detail
+    });
+  },
+  onClickLike(event){
+    let that = this;
+    login.getInstance().checkLogin(()=>{
+      request.post("/inread-api/like/comment",{
+        commentId: event.detail
+      }).then(res=>{
+        if(res.code !== 0){
+          return;
+        }
+        let index = 0;
+        for(let comment in that.data.comments){
+          if(comment.id === event.detail){
+            break;
+          }
+          index++;
+        }
+        if(index >= that.data.comments.length){
+          return;
+        }
+        wx.showToast({
+          title: "收到您的赞了",
+          icon: "none",
+          duration: 2000
+        });
+        var item = that.data.comments[index];
+        item.likeNum += 1;
+        var key = "comments["+ index + "]"
+        this.setData({
+          // 这里使用键值对方式赋值
+          key: item
+          }, function () {})
+      }).catch(e=>{
+        console.log(e);
+        wx.showToast({
+          title: "网络出错请重试",
+          icon: "none",
+          duration: 2000
+        });
+      }).finally(()=>{
+  
+      });
+    });
   }
-
 })

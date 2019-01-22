@@ -2,8 +2,8 @@
   "usingComponents": {
     "loading-container": "../../../component/loading-container/index",
     "comment-item": "../../component/comment-item/index",
-    "loadmore": "../../component/loadmore/index"
-
+    "loadmore": "../../component/loadmore/index",
+    "comment-input": "../../component/comment-input/index"
   },
   "enablePullDownRefresh": true
 }

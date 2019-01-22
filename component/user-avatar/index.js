@@ -16,6 +16,14 @@ Component({
     date: {
       type: String,
       value: ''
+    },
+    commentId: {
+      type: Number,
+      value: 0
+    },
+    likeNum: {
+      type: Number,
+      value: 0
     }
   },
 
@@ -30,7 +38,18 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    onClickReply(){
+      this.triggerEvent('clickReply', this.properties.commentId, {
+        bubbles: true,
+        composed: true
+      });
+    },
+    onClickLike(){
+      this.triggerEvent('clickLike', this.properties.commentId, {
+        bubbles: true,
+        composed: true
+      });
+    }
   },
   ready: function () {
     this.setData({

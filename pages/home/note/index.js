@@ -129,7 +129,6 @@ Page({
     this.setData({
       releaseFocus: !this.data.releaseFocus
     });
-    console.log(opt.detail);
     this.setData({
       currentCommentClickIndex: opt.detail
     });
@@ -155,11 +154,11 @@ Page({
         });
         var item = this.data.notes[that.data.currentCommentClickIndex]
         item.commentNum = item.commentNum + 1
-        var key = "notes["+ that.data.currentCommentClickIndex + "]"
         that.setData({
           commentInputValue: '',
           releaseFocus: false
         });
+        var key = "notes["+ that.data.currentCommentClickIndex + "]"
         this.setData({
           // 这里使用键值对方式赋值
           key: item
