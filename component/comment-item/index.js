@@ -37,6 +37,10 @@ Component({
     likeNum: {
       type: Number,
       value: 0
+    },
+    replyTo: {
+      type: String,
+      value: ''
     }
   },
 

@@ -20,6 +20,10 @@
     border-radius: 18rpx;
     padding: 18rpx 18rpx;
 }
+.comment-replay-user{
+    font-weight: bold;
+    color: #000;
+}
 .comment-more{
     font-size: 26rpx;
     color: #999999;

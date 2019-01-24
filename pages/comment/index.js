@@ -114,9 +114,10 @@ Page({
     this.data.page.loading = true;
     let that = this;
     request.post("/inread-api/comment/list",{
-      "page": curPage,
-      "size": this.data.page.size,
-      "noteId": this.data.noteId
+      page: curPage,
+      size: this.data.page.size,
+      noteId: this.data.noteId,
+      commentId: this.data.comment ? this.data.comment.id : 0
     }).then(res=>{
       that.setData({
         comments: that.pageable.received(that, curPage, that.data.comments, res.data ? res.data.records : [], false)
@@ -228,7 +229,7 @@ Page({
     }
     let commentStr = JSON.stringify(this.data.comments[index]);
     wx.navigateTo({
-      url: 'index?comment=' + commentStr
+      url: 'index?comment=' + commentStr + "&noteId=" + this.data.noteId
     })
   }
 })

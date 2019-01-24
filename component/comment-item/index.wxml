@@ -6,7 +6,7 @@
         likeNum="{{likeNum}}"
         commentId="{{commentId}}"></user-avatar>
     <view class="comment-content-layout">
-        <view class="comment-content" bindtap="onClickReply">{{content}}</view>
+        <view class="comment-content" bindtap="onClickReply"><text wx:if="{{replyTo}}">回复 <text class="comment-replay-user">{{replyTo}}：</text></text>{{content}}</view>
         <view class="comment-replay" wx:if="{{replyItems && replyItems.length > 0}}" bindtap="onMoreCommentClick">
             <comment-reply-item wx:for="{{replyItems}}" wx:key="{{index}}" 
         user="{{item.fromUser ? item.fromUser.username : '未知'}}"

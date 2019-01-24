@@ -2,21 +2,21 @@
 <loading-container class="loading-container" 
   emptyType="{{page.emptyType}}" type="{{type}}" bind:abnortap="onAbnorTap">
   <block wx:if="{{comment}}">
-    <comment-item 
-          avatar="{{item.fromUser ? item.fromUser.avatar : ''}}"
-          username="{{item.fromUser ? item.fromUser.username : ''}}"
-          date="{{item.createTime}}"
-          content="{{item.content}}"
-          replyItems="{{item.replyItems}}"
-          bind:replyItemClick="onReplyItemClick"
-          commentId="{{item.id}}"
-          likeNum="{{item.likeNum}}"
-          bind:clickReply="onClickReply"
-          bind:clickLike="onClickLike"
-          replyItemCount="{{item.replyItemCount}}"
-          bind:clickMoreComment="onClickMoreComment"
-          >
+    <view class="comment-item-divider comment-item-header">
+      <comment-item 
+            avatar="{{comment.fromUser ? comment.fromUser.avatar : ''}}"
+            username="{{comment.fromUser ? comment.fromUser.username : ''}}"
+            date="{{comment.createTime}}"
+            content="{{comment.content}}"
+            commentId="{{comment.id}}"
+            likeNum="{{comment.likeNum}}"
+            bind:clickReply="onClickReply"
+            bind:clickLike="onClickLike"
+            replyItemCount="{{comment.replyItemCount}}"
+            bind:clickMoreComment="onClickMoreComment"
+            >
       </comment-item>
+    </view>
       <view class="comment-header-divider"></view>
     </block>
     <view wx:for="{{comments}}" wx:key="{{index}}" class="comment-item-divider">
@@ -31,6 +31,7 @@
           likeNum="{{item.likeNum}}"
           bind:clickReply="onClickReply"
           bind:clickLike="onClickLike"
+          replyTo="{{item.toUser ? item.toUser.username : ''}}"
           replyItemCount="{{item.replyItemCount}}"
           bind:clickMoreComment="onClickMoreComment"
           >

@@ -1,7 +1,8 @@
 var Empty = require("../component/loading-container/emptyConstant.js");
 
 /**
- * 分页
+ * 分页，强制context的data种必须有一个page属性
+ * @see page
  */
 export default class Pageable{
     /**

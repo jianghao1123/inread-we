@@ -11,6 +11,9 @@
     padding-right: 34rpx;
     padding-top: 54rpx;
 }
+.comment-item-header{
+    padding-bottom: 34rpx;
+}
 .comment-header-divider{
     width: 100%;
     height: 24rpx;
