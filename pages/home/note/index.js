@@ -170,9 +170,17 @@ Page({
       wx.hideLoading();
     });
   },
-  onMoreCommentClick: function(opt){
+  onMoreCommentClick: function(e){
     wx.navigateTo({
-      url: "../../comment/index?noteId=" + this.data.notes[opt.detail].noteId
+      url: "../../comment/index?noteId=" + e.detail.noteId
+    });
+  },
+  onContentClick: function(e){
+    if(!this.data.notes[e.detail.index].articleId){
+      return;
+    }
+    wx.navigateTo({
+      url: "../../article/index?articleId=" + this.data.notes[e.detail.index].articleId
     });
   }
 })

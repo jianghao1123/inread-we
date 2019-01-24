@@ -35,6 +35,9 @@
   -webkit-line-clamp: 5;
   -webkit-box-orient: vertical; */
 }
+.more{
+  font-weight: bold;
+}
 .quotation-l{
   margin-top: 36rpx;
   color: #fae100;

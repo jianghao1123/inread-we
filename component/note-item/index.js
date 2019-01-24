@@ -59,6 +59,10 @@ Component({
     index: {
       type: Number,
       value: 0
+    },
+    more: {
+      type: Boolean,
+      value: false
     }
   },
 
@@ -94,10 +98,16 @@ Component({
     });
     },
     onCommentClick(event){
-      this.triggerEvent('commentClick', this.properties.index);
+      this.triggerEvent('commentClick'
+      , {noteId: this.properties.noteId, index: this.properties.index});
     },
     onMoreCommentClick(e){
-      this.triggerEvent('moreCommentClick', this.properties.index);
+      this.triggerEvent('moreCommentClick'
+      , {noteId: this.properties.noteId, index: this.properties.index});
+    },
+    onContentClick(e){
+      this.triggerEvent('contentClick'
+      , {noteId: this.properties.noteId, index: this.properties.index});
     }
   }
 })

@@ -1,0 +1,7 @@
+<!--pages/article/index.wxml-->
+<view class="article-container" >
+  <loading-container
+    emptyType="{{emptyType}}" type="{{type}}" bind:abnortap="onAbnorTap">	
+    <wemark md="{{content}}" link highlight type="wemark"></wemark>
+  </loading-container>
+</view>

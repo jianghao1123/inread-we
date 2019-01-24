@@ -4,7 +4,7 @@
     <text class="title" >{{title}}</text>
     <image class="picture" src="{{picture}}" wx:if="{{picture}}" mode="widthFix"></image>
     <view class="iconfont icon-map icon-quotation_l quotation-l"></view>
-    <text class="content">{{content}}</text>
+    <text class="content" bindtap="onContentClick">{{content}}<text wx:if="{{more}}" class="more content">更多</text></text>
     <view class="iconfont icon-map icon-quotation_r quotation-r"></view>
     <view class="operation">
       <view class="author">{{author}}</view>

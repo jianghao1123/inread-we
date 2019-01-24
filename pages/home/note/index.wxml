@@ -17,6 +17,8 @@
       commentItems="{{item.comments}}"
       bind:commentClick="onNoteCommentClick"
       bind:moreCommentClick="onMoreCommentClick"
+      bind:contentClick="onContentClick"
+      more="{{item.articleId}}"
       >
       </note-item>
       <view class='note-divider' wx:if="{{index < notes.length - 1}}"></view>
