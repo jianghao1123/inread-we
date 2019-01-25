@@ -1,0 +1,38 @@
+/* component/share-panel/index.wxss */
+.operation{
+    display: inline-flex;
+    flex-flow: row;
+    justify-content: center;
+    position: fixed;
+    background: #FFFFFF;
+    opacity:0.9;
+    bottom: 36rpx;
+    padding: 18rpx 38rpx;
+    border-radius: 46px;
+    box-shadow:0rpx 0rpx 1rpx #333333;
+    margin:0 auto; 
+    left:0; 
+    right:0; 
+    width: 30%;
+  }
+  .icon-comment{
+    margin-left: 42rpx;
+    width: 46rpx;
+    height: 46rpx;
+  }
+  .icon-like{
+    margin-left: 42rpx;
+    width: 46rpx;
+    height: 46rpx;
+  }
+  .icon-share{
+    width: 46rpx;
+    height: 46rpx;
+  }
+  .count{
+    font-size: 24rpx;
+    margin-left: 6rpx;
+    color: #666;
+    margin-bottom: 50rpx;
+    align-self: flex-start;
+  }

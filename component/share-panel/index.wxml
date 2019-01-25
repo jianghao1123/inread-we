@@ -1,0 +1,10 @@
+<!--component/share-panel/index.wxml-->
+<view id="operation" class="operation" animation="{{animationData}}">
+    <view class="author">{{author}}</view>
+    <image class="icon-share" src="../../assets/icon_share.svg" mode="aspectFill" bindtap="onShareClick"></image>
+    <text class="count">{{shareCount}}</text>
+    <image class="icon-like" src="../../assets/icon_like.svg" mode="aspectFill" bindtap="onLikeClick"></image>
+    <text class="count">{{likeCount}}</text>
+    <image class="icon-comment" src="../../assets/icon_comment.svg" mode="aspectFill" bindtap="onCommentClick"></image>
+    <text class="count">{{commentCount}}</text>
+</view>

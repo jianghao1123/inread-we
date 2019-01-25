@@ -1,7 +1,8 @@
 <!--pages/article/index.wxml-->
-<view class="article-container" >
+<view class="article-container" bindtap="onContainerClick">
   <loading-container
     emptyType="{{emptyType}}" type="{{type}}" bind:abnortap="onAbnorTap">	
     <wemark md="{{content}}" link highlight type="wemark"></wemark>
+    <share-panel toggle="{{showSharePanel}}"></share-panel>
   </loading-container>
 </view>

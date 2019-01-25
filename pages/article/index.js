@@ -10,7 +10,8 @@ Page({
    */
   data: {
     content: '',
-    emptyType: Empty.loading
+    emptyType: Empty.loading,
+    showSharePanel: true
   },
 
   /**
@@ -76,6 +77,14 @@ Page({
   onShareAppMessage: function () {
 
   },
+  onPageScroll() {
+    // Do something when page scroll
+    if(this.data.showSharePanel){
+      this.setData({
+        showSharePanel: !this.data.showSharePanel
+      });
+    }
+  },
 
   fetchArticle(articleId){
     let that = this;
@@ -98,6 +107,12 @@ Page({
       });
     }).finally(()=>{
 
+    });
+  },
+
+  onContainerClick(){
+    this.setData({
+      showSharePanel: !this.data.showSharePanel
     });
   }
 
