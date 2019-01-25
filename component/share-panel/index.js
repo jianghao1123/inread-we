@@ -10,7 +10,20 @@ Component({
       observer(toggle) {
         this.animate(toggle);
       }
+    },
+    shareCount: {
+      type: String,
+      value: '0'
+    },
+    likeCount: {
+      type: String,
+      value: '0'
+    },
+    commentCount: {
+      type: String,
+      value: '0'
     }
+
   },
 
   /**
@@ -33,6 +46,15 @@ Component({
       this.setData({
         animationData: animation.export()
       });
+    },
+    onShareClick(event){
+      this.triggerEvent('shareClick');
+    },
+    onLikeClick(event){
+      this.triggerEvent('likeClick');
+    },
+    onCommentClick(event){
+      this.triggerEvent('commentClick');
     }
   }
 })

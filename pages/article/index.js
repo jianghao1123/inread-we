@@ -1,7 +1,7 @@
 // pages/article/index.js
 var Empty = require("../../component/loading-container/emptyConstant.js");
 var request = require("../../utils/request")
-
+import login from "../../utils/login"
 
 Page({
 
@@ -11,15 +11,25 @@ Page({
   data: {
     content: '',
     emptyType: Empty.loading,
-    showSharePanel: true
+    showSharePanel: true,
+    likeCount: '',
+    shareCount: '',
+    commentCount: '',
+    noteId: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if(options.articleId){
-      this.fetchArticle(options.articleId);
+    wx.showShareMenu({
+      withShareTicket: true
+    });
+    if(options.noteId){
+      this.setData({
+        noteId: options.noteId
+      });
+      this.fetchArticle(options.noteId);
     }else{
       this.setData({
         emptyType: Empty.empty
@@ -86,15 +96,18 @@ Page({
     }
   },
 
-  fetchArticle(articleId){
+  fetchArticle(noteId){
     let that = this;
     request.get('/inread-api/article/detail', {
-      articleId: articleId
+      noteId: noteId
     }).then(res=>{
-      if(res && res.code == 0 && res.data.content){
+      if(res && res.code == 0 && res.data && res.data.content){
         that.setData({
           content: res.data.content,
-          emptyType: Empty.content
+          emptyType: Empty.content,
+          likeCount: res.data.note ? res.data.note.likeNum : '',
+          shareCount: res.data.note ? res.data.note.shareNum : '',
+          commentCount: res.data.note ? res.data.note.commentNum : '',
         });
       }else{
         this.setData({
@@ -114,7 +127,31 @@ Page({
     this.setData({
       showSharePanel: !this.data.showSharePanel
     });
+  },
+  onShareClick(){
+    this.setData({
+
+    });
+  },
+  onLikeClick(){
+    if(!login.getInstance().checkLogin()){
+      return;
+    }
+    var that = this;
+    request.post("/inread-api/like/note"
+    ,{ 
+    noteId: this.data.noteId,
+    }).then(res=>{
+        if(res && res.code === 0){
+            this.setData({
+              likeCount: that.likeCount + 1 
+        });
+      }
+    });
+  },
+  onCommentClick(){
+    wx.navigateTo({
+      url: "../comment/index?noteId=" + this.data.noteId
+    });
   }
-
-
 })

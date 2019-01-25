@@ -3,6 +3,13 @@
   <loading-container
     emptyType="{{emptyType}}" type="{{type}}" bind:abnortap="onAbnorTap">	
     <wemark md="{{content}}" link highlight type="wemark"></wemark>
-    <share-panel toggle="{{showSharePanel}}"></share-panel>
+    <share-panel toggle="{{showSharePanel}}" 
+    bind:likeClick="onLikeClick"
+    bind:shareClick="onShareClick"
+    bind:commentClick="onCommentClick"
+    likeCount="{{likeCount}}"
+    shareCount="{{shareCount}}"
+    commentCount="{{commentCount}}"
+    ></share-panel>
   </loading-container>
 </view>

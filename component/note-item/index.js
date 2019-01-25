@@ -37,16 +37,16 @@ Component({
       value: false
     },
     likeCount: {
-      type: Number,
-      value: 0
+      type: String,
+      value: ''
     },
     commentCount: {
-      type: Number,
-      value: 0
+      type: String,
+      value: ''
     },
     shareCount: {
-      type: Number,
-      value: 0
+      type: String,
+      value: ''
     },
     commentItems: {
       type: Array,
@@ -70,6 +70,7 @@ Component({
    * 组件的初始数据
    */
   data: {
+    animationData: {}
   },
 
   /**
@@ -77,15 +78,21 @@ Component({
    */
   methods: {
     onShareClick(event){
-      if(!login.getInstance().checkLogin()){
-        return;
-      }
-      console.log('click');
     },
     onLikeClick(event){
       if(!login.getInstance().checkLogin()){
         return;
       }
+      const animation = wx.createAnimation({
+        duration: 420,
+        timingFunction: 'ease',
+      });
+      animation.scale(1.15, 1.15).step();
+      animation.scale(1, 1).step();
+      this.setData({
+        animationData: animation.export()
+      });
+
       request.post("/inread-api/like/note"
     ,{ 
       noteId: this.properties.noteId,

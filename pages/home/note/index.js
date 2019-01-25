@@ -25,6 +25,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.showShareMenu({
+      withShareTicket: true
+    });
   },
   onPageScroll() {
     // Do something when page scroll
@@ -86,7 +89,7 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    console.log('share')
   },
 
   /**
@@ -180,7 +183,7 @@ Page({
       return;
     }
     wx.navigateTo({
-      url: "../../article/index?articleId=" + this.data.notes[e.detail.index].articleId
+      url: "../../article/index?noteId=" + this.data.notes[e.detail.index].noteId
     });
   }
 })

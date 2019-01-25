@@ -1,6 +1,4 @@
 /* pages/article/index.wxss */
 .article-container{
 	padding:38rpx;
-	display: block;
-	position: relative;
 }

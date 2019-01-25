@@ -1,6 +1,6 @@
 /* component/share-panel/index.wxss */
 .operation{
-    display: inline-flex;
+    display: flex;
     flex-flow: row;
     justify-content: center;
     position: fixed;
@@ -10,10 +10,9 @@
     padding: 18rpx 38rpx;
     border-radius: 46px;
     box-shadow:0rpx 0rpx 1rpx #333333;
-    margin:0 auto; 
-    left:0; 
-    right:0; 
-    width: 30%;
+    right: 38rpx;
+    max-width: 50%;
+    min-width: 38%;
   }
   .icon-comment{
     margin-left: 42rpx;
@@ -33,6 +32,5 @@
     font-size: 24rpx;
     margin-left: 6rpx;
     color: #666;
-    margin-bottom: 50rpx;
     align-self: flex-start;
   }
