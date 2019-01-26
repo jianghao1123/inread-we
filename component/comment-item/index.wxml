@@ -4,13 +4,14 @@
         avatar="{{avatar}}"
         date="{{date}}"
         likeNum="{{likeNum}}"
+        uid="{{uid}}"
         commentId="{{commentId}}"></user-avatar>
     <view class="comment-content-layout">
         <view class="comment-content" bindtap="onClickReply"><text wx:if="{{replyTo}}">回复 <text class="comment-replay-user">{{replyTo}}：</text></text>{{content}}</view>
         <view class="comment-replay" wx:if="{{replyItems && replyItems.length > 0}}" bindtap="onMoreCommentClick">
             <comment-reply-item wx:for="{{replyItems}}" wx:key="{{index}}" 
         user="{{item.fromUser ? item.fromUser.username : '未知'}}"
-        comment="{{item.content}}" replyUser="{{item.toUser.username}}"
+        comment="{{item.content}}" replyUser="{{item.toUser && item.toUser.id != item.fromUser.id ? item.toUser.username : ''}}"
         noteId="{{noteId}}">
             </comment-reply-item>
             <text class="comment-more" bindtap="onMoreCommentClick">查看{{replyItemCount}}条评论</text>

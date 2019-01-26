@@ -147,7 +147,7 @@ Page({
           noteId: that.data.noteId,
           content: opt.detail,
           toUid: that.data.currentCommentReplyUid,
-          commentPid:  that.data.comment 
+          commentPid:  that.data.comment
           ?  that.data.comment.id : that.data.currentCommentId,
         }).then(res=>{
         if(res && res.code == 0){
@@ -194,14 +194,16 @@ Page({
     });
   },
   onReplyItemClick(event){
+    console.log('sdf')
     this.setData({
-      currentCommentReplyUid: event.detail
+      currentCommentReplyUid: event.detail.uid
     });
   },
   onClickReply(event){
     this.setData({
       releaseFocus: !this.data.releaseFocus,
-      currentCommentId: event.detail
+      currentCommentId: event.detail.commentId,
+      currentCommentReplyUid: event.detail.uid
     });
   },
   onClickLike(event){

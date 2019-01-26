@@ -23,6 +23,7 @@
 .comment-replay-user{
     font-weight: bold;
     color: #000;
+    font-size: 25rpx;
 }
 .comment-more{
     font-size: 26rpx;

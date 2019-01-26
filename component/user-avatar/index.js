@@ -24,6 +24,10 @@ Component({
     likeNum: {
       type: Number,
       value: 0
+    },
+    uid: {
+      type: Number,
+      value: 0
     }
   },
 
@@ -39,7 +43,9 @@ Component({
    */
   methods: {
     onClickReply(){
-      this.triggerEvent('clickReply', this.properties.commentId, {
+      this.triggerEvent('clickReply'
+      , {uid: this.properties.uid, commentId: this.properties.commentId}
+      , {
         bubbles: true,
         composed: true
       });
