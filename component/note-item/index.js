@@ -40,15 +40,30 @@ Component({
     },
     likeCount: {
       type: String,
-      value: ''
+      value: '',
+      observer(likeCount) {
+        this.setData({
+          likeCount : util.formatCount(likeCount)
+        });
+      }
     },
     commentCount: {
       type: String,
-      value: ''
+      value: '',
+      observer(commentCount) {
+        this.setData({
+          commentCount : util.formatCount(commentCount)
+        });
+      }
     },
     shareCount: {
       type: String,
-      value: ''
+      value: '',
+      observer(shareCount) {
+        this.setData({
+          shareCount : util.formatCount(shareCount)
+        });
+      }
     },
     commentItems: {
       type: Array,

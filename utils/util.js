@@ -83,10 +83,38 @@ function isNumber(value) {
     return true
   }
 }
+
+/**
+ *  格式化数字 小于0的将会返回空字符串
+ * @param {当前数字} value 
+ */
+function formatCount(value){
+   if(!isNumber(value)){
+     return value;
+   }
+   value = Number(value);
+   if(value <= 0){
+     return '';
+   }
+   if(value < 1000){
+     return value;
+   }
+   if(value < 10000){
+     return (value / 1000.0).toFixed(1) + 'k';
+   }
+   if(value < 10000000){
+     return (value / 10000).toFixed(1) + 'w';
+   }
+   if(value < 100000000){
+     return (value / 10000000).toFixed(1) + 'kw';
+   }
+   return (value / 100000000).toFixed(1) + 'm';
+}
     
 
 module.exports = {
   formatTime: formatTime,
   getDateDiff: getDateDiff,
-  isNumber: isNumber
+  isNumber: isNumber,
+  formatCount: formatCount
 }
