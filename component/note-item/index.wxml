@@ -18,7 +18,8 @@
     <view wx:if="{{commentItems && commentItems.length > 0}}" class="conmment-layout">
       <comment wx:for="{{commentItems}}" wx:key="{{index}}" 
       user="{{item.fromUser ? item.fromUser.username : '未知'}}"
-      comment="{{item.content}}"></comment>
+      comment="{{item.content}}"
+      noteId="{{item.noteId}}"></comment>
       <text class="comment-more" bindtap="onMoreCommentClick">查看{{commentCount}}条评论</text>
     </view>
 </view>

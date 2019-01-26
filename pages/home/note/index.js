@@ -130,10 +130,8 @@ Page({
   // 点击评论
   onNoteCommentClick: function(opt){
     this.setData({
-      releaseFocus: !this.data.releaseFocus
-    });
-    this.setData({
-      currentCommentClickIndex: opt.detail
+      releaseFocus: !this.data.releaseFocus,
+      currentCommentClickIndex: opt.detail.index
     });
   },
   // 提交评论
@@ -184,6 +182,11 @@ Page({
     }
     wx.navigateTo({
       url: "../../article/index?noteId=" + this.data.notes[e.detail.index].noteId
+    });
+  },
+  onReplyItemClick: function(e){
+    wx.navigateTo({
+      url: "../../comment/index?noteId=" + e.detail.noteId
     });
   }
 })

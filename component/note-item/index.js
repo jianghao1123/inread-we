@@ -92,14 +92,14 @@ Component({
       this.setData({
         animationData: animation.export()
       });
-
+      var that = this;
       request.post("/inread-api/like/note"
     ,{ 
       noteId: this.properties.noteId,
     }).then(res=>{
       if(res && res.code === 0){
-          this.setProperties({
-            likeCount: likeCount + 1 
+          that.setProperties({
+            likeCount: that.properties.likeCount + 1 
           });
       }
     });

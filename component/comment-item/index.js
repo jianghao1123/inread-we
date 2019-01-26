@@ -41,6 +41,10 @@ Component({
     replyTo: {
       type: String,
       value: ''
+    },
+    noteId: {
+      type: Number,
+      value: 0
     }
   },
 

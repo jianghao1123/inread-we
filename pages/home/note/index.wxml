@@ -18,6 +18,7 @@
       bind:commentClick="onNoteCommentClick"
       bind:moreCommentClick="onMoreCommentClick"
       bind:contentClick="onContentClick"
+      bind:replyItemClick="onReplyItemClick"
       more="{{item.articleId}}"
       >
       </note-item>

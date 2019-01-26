@@ -21,6 +21,10 @@ Component({
     replyUser: {
       type: String,
       value: ''
+    },
+    noteId: {
+      type: String,
+      value: ''
     }
   },
 
@@ -36,8 +40,11 @@ Component({
    */
   methods: {
     onReplyItemClick(){
-      this.triggerEvent('replyItemClick', this.properties.uid,{
-        composed: true
+      this.triggerEvent('replyItemClick'
+      , {uid: this.properties.uid
+        , noteId: this.properties.noteId},{
+        composed: true,
+        bubbles: true
       });
     }
   }

@@ -17,13 +17,12 @@ Page({
     page: new PageLoad(),
     // 没有更多了
     releaseFocus: false,
-    // 点击了哪条评论
-    currentCommentClickIndex: 0,
+    // 当前回复的评论id
     currentCommentId: 0,
     // 回复谁
     currentCommentReplyUid: 0,
     commentInputValue: '',
-    // 评论详情
+    // 评论详情 如果这个不为空，是所有的评论回复列表
     comment: null
   },
   pageable: new Pageable(),
@@ -113,7 +112,7 @@ Page({
     }
     this.data.page.loading = true;
     let that = this;
-    request.post("/inread-api/comment/list",{
+    request.post("/inread-api/comment/list", {
       page: curPage,
       size: this.data.page.size,
       noteId: this.data.noteId,
@@ -148,10 +147,45 @@ Page({
           noteId: that.data.noteId,
           content: opt.detail,
           toUid: that.data.currentCommentReplyUid,
-          commentPid: that.data.currentCommentId,
+          commentPid:  that.data.comment 
+          ?  that.data.comment.id : that.data.currentCommentId,
         }).then(res=>{
-        // 成功
         if(res && res.code == 0){
+          wx.showToast({
+            title: "评论成功",
+            icon: "none",
+            duration: 2000
+          });
+          // 回复列表评论，新增
+          if(that.data.comment){
+            let items = [res.data];
+            that.setData({
+              commentInputValue: '',
+              releaseFocus: false,
+              comments: [...items ,...that.data.comments]
+            });
+          }else{
+            let index = 0;
+            for(let pos in that.data.comments){
+              if(that.data.comments[pos].id == that.data.currentCommentId){
+                break;
+              }
+              index++;
+            }
+            if(index >= that.data.comments.length){
+              return;
+            }
+            var item = that.data.comments[index];
+            item.replyItems = [...item.replyItems, ...[res.data]];
+            item.replyItemCount = item.replyItemCount + 1;
+            var key = "comments["+ index + "]"
+            this.setData({
+              // 这里使用键值对方式赋值
+              [key]: item,
+              commentInputValue: '',
+              releaseFocus: false,
+              });
+            }
         }
       }).catch(e=>{
       }).finally(()=>{
@@ -166,9 +200,7 @@ Page({
   },
   onClickReply(event){
     this.setData({
-      releaseFocus: !this.data.releaseFocus
-    });
-    this.setData({
+      releaseFocus: !this.data.releaseFocus,
       currentCommentId: event.detail
     });
   },
@@ -198,7 +230,6 @@ Page({
         });
         var item = that.data.comments[index];
         item.likeNum += 1;
-        item.replyItems = [...item.replyItems, res.data];
         var key = "comments["+ index + "]"
         this.setData({
           // 这里使用键值对方式赋值
