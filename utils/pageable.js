@@ -46,9 +46,12 @@ export default class Pageable{
         }
       }
       if(!append && (!receivedData || receivedData.length < context.data.page.size)){
-        context.setData({
-            'page.nomore': true
-        });
+        // 防止nomore先展示出来
+        setTimeout(()=>{
+            context.setData({
+                'page.nomore': true
+            });
+        }, 200);
       }
       if(!append && receivedData && receivedData.length > 0){
           if(curPage == 1){

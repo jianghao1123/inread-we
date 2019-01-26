@@ -17,13 +17,16 @@ Page({
     page: new PageLoad(),
     // 没有更多了
     releaseFocus: false,
+    hidden: false,
     // 当前回复的评论id
     currentCommentId: 0,
     // 回复谁
     currentCommentReplyUid: 0,
     commentInputValue: '',
     // 评论详情 如果这个不为空，是所有的评论回复列表
-    comment: null
+    comment: null,
+    placeholderText: '说点什么吧',
+    submiting: false
   },
   pageable: new Pageable(),
   /**
@@ -43,11 +46,11 @@ Page({
   },
   onPageScroll() {
     // Do something when page scroll
-    if(this.data.releaseFocus){
-      this.setData({
-        releaseFocus: !this.data.releaseFocus
-      });
-    }
+    // if(this.data.releaseFocus){
+    //   this.setData({
+    //     releaseFocus: !this.data.releaseFocus
+    //   });
+    // }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -135,6 +138,7 @@ Page({
     this.fetchComments();
   },
   submitReply(opt){
+    this.data.submiting = true;
     let that = this;
     login.getInstance().checkLogin(()=>{
       wx.showLoading({
@@ -150,28 +154,20 @@ Page({
           commentPid:  that.data.comment
           ?  that.data.comment.id : that.data.currentCommentId,
         }).then(res=>{
-        if(res && res.code == 0){
+        if(res && res.code == 0 && res.data){
           wx.showToast({
             title: "评论成功",
             icon: "none",
             duration: 2000
           });
-          // 回复列表评论，新增
-          if(that.data.comment){
+          // 列表新增
+          if(that.data.comment || res.data.toUid == 0){
             let items = [res.data];
             that.setData({
-              commentInputValue: '',
-              releaseFocus: false,
               comments: [...items ,...that.data.comments]
             });
           }else{
-            let index = 0;
-            for(let pos in that.data.comments){
-              if(that.data.comments[pos].id == that.data.currentCommentId){
-                break;
-              }
-              index++;
-            }
+            let index = that.indexOf(that.data.currentCommentId);
             if(index >= that.data.comments.length){
               return;
             }
@@ -181,29 +177,33 @@ Page({
             var key = "comments["+ index + "]"
             this.setData({
               // 这里使用键值对方式赋值
-              [key]: item,
-              commentInputValue: '',
-              releaseFocus: false,
+              [key]: item
               });
-            }
+          }
+          that.clearInput();
         }
       }).catch(e=>{
+        this.data.submiting = false;
       }).finally(()=>{
         wx.hideLoading();
+        this.data.submiting = false;
       });
+    },()=>{
+      this.data.submiting = false;
     });
   },
   onReplyItemClick(event){
-    console.log('sdf')
     this.setData({
       currentCommentReplyUid: event.detail.uid
     });
   },
   onClickReply(event){
+    let comment = this.commentOf(event.detail.commentId);
     this.setData({
       releaseFocus: !this.data.releaseFocus,
       currentCommentId: event.detail.commentId,
-      currentCommentReplyUid: event.detail.uid
+      currentCommentReplyUid: event.detail.uid,
+      placeholderText: comment && comment.fromUser ? '回复 ' + comment.fromUser.username : this.data.placeholderText
     });
   },
   onClickLike(event){
@@ -215,13 +215,7 @@ Page({
         if(res.code !== 0){
           return;
         }
-        let index = 0;
-        for(let pos in that.data.comments){
-          if(that.data.comments[pos].id == event.detail){
-            break;
-          }
-          index++;
-        }
+        let index = that.indexOf(event.detail);
         if(index >= that.data.comments.length){
           return;
         }
@@ -236,7 +230,7 @@ Page({
         this.setData({
           // 这里使用键值对方式赋值
           [key]: item
-          }, function () {})
+          }, function () {});
       }).catch(e=>{
         console.log(e);
         wx.showToast({
@@ -250,13 +244,7 @@ Page({
     });
   },
   onClickMoreComment(event){
-    let index = 0;
-    for(let pos in this.data.comments){
-      if(this.data.comments[pos].id == event.detail){
-        break;
-      }
-      index++;
-    }
+    let index = this.indexOf(event.detail);
     if(index >= this.data.comments.length){
       return;
     }
@@ -264,5 +252,51 @@ Page({
     wx.navigateTo({
       url: 'index?comment=' + commentStr + "&noteId=" + this.data.noteId
     })
+  },
+  indexOf(commentId){
+    let index = 0;
+    for(let pos in this.data.comments){
+      if(this.data.comments[pos].id == commentId){
+        break;
+      }
+      index++;
+    }
+    return index;
+  },
+  commentOf(commentId){
+    if(this.data.comment && commentId == this.data.comment.id){
+      return this.data.comment;
+    }
+    let index = 0;
+    for(let pos in this.data.comments){
+      if(this.data.comments[pos].id == commentId){
+        break;
+      }
+      index++;
+    }
+    if(index < this.data.comments.length){
+      return this.data.comments[index];
+    }
+    return null;
+  },
+  /**
+   * 键盘失去焦点
+   * @param {} e 
+   */
+  onBindblur(e){
+    this.setData({
+      releaseFocus: false
+    });
+    if(!this.data.submiting){
+      this.clearInput();
+    }
+  },
+  clearInput(){
+    this.setData({
+      commentInputValue: '',
+      currentCommentId: this.data.comment ? this.data.comment.id : 0,
+      currentCommentReplyUid: this.data.comment ? this.data.comment.fromUser.id : 0,
+      placeholderText: this.data.comment ? '回复 ' + this.data.comment.fromUser.username  : '说点什么吧'
+    });
   }
 })

@@ -6,6 +6,10 @@ Component({
    * 组件的属性列表
    */
   properties: {
+    hidden: {
+      type: Boolean,
+      value: true
+    },
     releaseFocus: {
       type: Boolean,
       value: false
@@ -37,7 +41,7 @@ Component({
      */
     valueChange(e){
       this.data.inputValue = e.detail.value;
-      if(e.detail.value.length >= 1){
+      if(e.detail.value && !e.detail.value.match(/^\s*$/) && e.detail.value.length >= 1){
         this.setData({
           submitAble:true
         });
@@ -52,6 +56,14 @@ Component({
         return;
       }
       this.triggerEvent('commentSubmit', this.data.inputValue);
+    },
+    onBindblur(){
+      this.triggerEvent('bindblur', this.data.inputValue);
+      if(!this.data.inputValue){
+        this.setData({
+          submitAble:false
+        });
+      }
     }
   }
 })

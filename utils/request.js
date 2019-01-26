@@ -1,6 +1,6 @@
 import {request} from 'wx-request';
 var token = require('../storage/token.js')
-const API_BASE_URL = 'http://localhost:8090'
+const API_BASE_URL = 'http://192.168.31.198:8090'
 
 
 function get(url, data){

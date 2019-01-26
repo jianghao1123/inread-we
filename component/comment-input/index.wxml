@@ -1,6 +1,6 @@
 <!--component/comment-input/index.wxml-->
 <!-- <view class='input-divider'></view> -->
-<view class="input-container" hidden="{{!releaseFocus}}">
+<view class="input-container" hidden="{{!releaseFocus && hidden}}">
     <textarea class="input-text"
           id="input-text"
           placeholder-class="input-text-empty" 
@@ -11,6 +11,7 @@
           auto-height="true" 
           value="{{inputValue}}"
           focus="{{releaseFocus}}"
-          placeholder="{{placeholderText}}"></textarea>
-    <view class="submit {{submitAble ? 'submit-able' : ''}}" bindtap="submit">发送</view>
+          placeholder="{{placeholderText}}"
+          bindblur="onBindblur"></textarea>
+    <view class="submit {{submitAble ? 'submit-able' : ''}}" disabled="{{submitAble ? false : true}}" bindtap="submit">发送</view>
 </view>

@@ -40,5 +40,11 @@
       </comment-item>
     </view>
     <loadmore text="{{page.nomore ? '到底了' : '正在努力加载中...'}}" icon="{{true}}" is-end="{{page.nomore}}"></loadmore>
-    <comment-input releaseFocus="{{releaseFocus}}" bind:commentSubmit="submitReply" inputValue="{{commentInputValue}}"></comment-input>
+    <view class="comment-input"></view>
+    <comment-input releaseFocus="{{releaseFocus}}" 
+    bind:commentSubmit="submitReply" 
+    placeholderText="{{placeholderText}}"
+    inputValue="{{commentInputValue}}"
+    hidden="{{hidden}}"
+    bind:bindblur="onBindblur"></comment-input>
 </loading-container>
