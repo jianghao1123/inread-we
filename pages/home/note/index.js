@@ -90,8 +90,15 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-    console.log('share')
+  onShareAppMessage: function (e) {
+    console.log(e);
+    if(e && e.from == 'button' && e.target.dataset && e.target.dataset.index){
+      let index = e.target.dataset.index;
+      return {
+        title: this.data.notes[index].title,
+        imageUrl: this.data.notes[index].picture
+      }
+    }
   },
 
   /**
@@ -233,6 +240,16 @@ Page({
         icon: "none",
         duration: 2000
       });
+    });
+  },
+  onShareClick(e){
+    request.post('/inread-api/note/share', {
+      noteId: e.detail.noteId
+    }).then(res=>{
+    }).catch(e=>{
+
+    }).finally(()=>{
+
     });
   }
 })

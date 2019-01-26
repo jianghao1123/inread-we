@@ -129,7 +129,12 @@ Page({
     });
   },
   onShareClick(){
-    this.setData({
+    request.post('/inread-api/note/share', {
+      noteId: this.data.noteId
+    }).then(res=>{
+    }).catch(e=>{
+
+    }).finally(()=>{
 
     });
   },

@@ -20,6 +20,7 @@
       bind:moreCommentClick="onMoreCommentClick"
       bind:contentClick="onContentClick"
       bind:replyItemClick="onReplyItemClick"
+      bind:shareClick="onShareClick"
       more="{{item.articleId}}"
       >
       </note-item>

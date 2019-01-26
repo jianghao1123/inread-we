@@ -95,6 +95,8 @@ Component({
    */
   methods: {
     onShareClick(event){
+      this.triggerEvent('shareClick'
+      , {noteId: this.properties.noteId, index: this.properties.index});
     },
     onLikeClick(event){
       if(!login.getInstance().checkLogin()){

@@ -8,7 +8,7 @@
     <view class="iconfont icon-map icon-quotation_r quotation-r"></view>
     <view class="operation">
       <view class="author">{{author}}</view>
-      <button open-type="share"><image class="icon-share" src="../../assets/icon_share.svg" mode="aspectFill" bindtap="onShareClick"></image></button>
+      <button open-type="share" bindtap="onShareClick" data-index="{{index}}"><image class="icon-share" src="../../assets/icon_share.svg" mode="aspectFill"></image></button>
       <text class="count">{{shareCount}}</text>
       <image class="icon-like" src="../../assets/icon_like.svg" mode="aspectFill" bindtap="onLikeClick" animation="{{animationData}}"></image>
       <text class="count">{{likeCount}}</text>
