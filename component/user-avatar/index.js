@@ -15,7 +15,12 @@ Component({
     },
     date: {
       type: String,
-      value: ''
+      value: '',
+      observer(date) {
+        this.setData({
+          date: util.getDateDiff(date)
+        });
+      }
     },
     commentId: {
       type: Number,
@@ -23,7 +28,12 @@ Component({
     },
     likeNum: {
       type: Number,
-      value: 0
+      value: 0,
+      observer(likeNum) {
+        this.setData({
+          likeNum : util.formatCount(likeNum)
+        });
+      }
     },
     uid: {
       type: Number,

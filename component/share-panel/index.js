@@ -1,4 +1,5 @@
 // component/share-panel/index.js
+import util from '../../utils/util'
 Component({
   /**
    * 组件的属性列表
@@ -13,15 +14,30 @@ Component({
     },
     shareCount: {
       type: String,
-      value: '0'
+      value: '',
+      observer(shareCount) {
+        this.setData({
+          shareCount : util.formatCount(shareCount)
+        });
+      }
     },
     likeCount: {
       type: String,
-      value: '0'
+      value: '',
+      observer(likeCount) {
+        this.setData({
+          likeCount : util.formatCount(likeCount)
+        });
+      }
     },
     commentCount: {
       type: String,
-      value: '0'
+      value: '',
+      observer(commentCount) {
+        this.setData({
+          commentCount : util.formatCount(commentCount)
+        });
+      }
     }
 
   },

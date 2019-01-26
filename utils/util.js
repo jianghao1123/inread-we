@@ -15,6 +15,9 @@ const formatNumber = n => {
 }
 
 function getDateDiff(dateStr) {
+  if(dateStr.indexOf('-') == -1){
+    return dateStr;
+  }
   var publishTime = getDateTimeStamp(dateStr) / 1000,
   d_seconds,
   d_minutes,
