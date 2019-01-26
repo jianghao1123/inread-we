@@ -16,10 +16,14 @@
       <text class="count">{{commentCount}}</text>
     </view>
     <view wx:if="{{commentItems && commentItems.length > 0}}" class="conmment-layout">
-      <comment wx:for="{{commentItems}}" wx:key="{{index}}" 
-      user="{{item.fromUser ? item.fromUser.username : '未知'}}"
-      comment="{{item.content}}"
-      noteId="{{item.noteId}}"></comment>
+      <block wx:for="{{commentItems}}" wx:key="{{index}}">
+        <comment
+        user="{{item.fromUser ? item.fromUser.username : '未知'}}"
+        comment="{{item.content}}"
+        noteId="{{item.noteId}}">
+        </comment>
+        <view class="comment-reply-item-divider" wx:if="{{commentItems.length > 1 && index < commentItems.length - 1}}"></view>
+      </block>
       <text class="comment-more" bindtap="onMoreCommentClick">查看{{commentCount}}条评论</text>
     </view>
 </view>

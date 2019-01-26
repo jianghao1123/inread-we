@@ -3,7 +3,7 @@
   emptyType="{{page.emptyType}}" type="{{type}}" bind:abnortap="onAbnorTap">
   <scroll-view >
     <block wx:for="{{notes}}" wx:key="{{index}}">
-      <note-item  
+      <note-item
       title="{{item.title}}"
       picture="{{item.picture}}"
       date="{{item.createDate}}"
@@ -16,6 +16,7 @@
       index="{{index}}"
       commentItems="{{item.comments}}"
       bind:commentClick="onNoteCommentClick"
+      bind:likeClick="onLikeClick"
       bind:moreCommentClick="onMoreCommentClick"
       bind:contentClick="onContentClick"
       bind:replyItemClick="onReplyItemClick"
@@ -29,5 +30,6 @@
   <comment-input releaseFocus="{{releaseFocus}}" 
   bind:commentSubmit="onCommentSubmit" 
   inputValue="{{commentInputValue}}" 
-  bind:bindblur="onBindblur"></comment-input>
+  bind:bindblur="onBindblur"
+  submitAble="{{submitAble}}"></comment-input>
 </loading-container>

@@ -103,3 +103,7 @@
   font-size: 26rpx;
   color: #999999;
 }
+.comment-reply-item-divider{
+  height: 8rpx;
+  width: 100%;
+}

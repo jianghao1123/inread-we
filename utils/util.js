@@ -75,7 +75,18 @@ function getDateTimeStamp(dateStr) {
   return Date.parse(dateStr);
 }
 
+function isNumber(value) {
+  var patrn = /^(-)?\d+(\.\d+)?$/;
+  if (patrn.exec(value) == null || value == "") {
+    return false
+  } else {
+    return true
+  }
+}
+    
+
 module.exports = {
   formatTime: formatTime,
-  getDateDiff: getDateDiff
+  getDateDiff: getDateDiff,
+  isNumber: isNumber
 }

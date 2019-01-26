@@ -1,6 +1,8 @@
 // component/note-item/index.js
 import login from "../../utils/login"
 import request from '../../utils/request'
+import util from '../../utils/util'
+
 
 
 Component({
@@ -92,19 +94,13 @@ Component({
       this.setData({
         animationData: animation.export()
       });
-      var that = this;
-      request.post("/inread-api/like/note"
-    ,{ 
-      noteId: this.properties.noteId,
-    }).then(res=>{
-      if(res && res.code === 0){
-          that.setProperties({
-            likeCount: that.properties.likeCount + 1 
-          });
-      }
-    });
+      this.triggerEvent('likeClick'
+      , {noteId: this.properties.noteId, index: this.properties.index});
     },
     onCommentClick(event){
+      if(!login.getInstance().checkLogin()){
+        return;
+      }
       this.triggerEvent('commentClick'
       , {noteId: this.properties.noteId, index: this.properties.index});
     },

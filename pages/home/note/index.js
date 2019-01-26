@@ -3,6 +3,7 @@ var Empty = require("../../../component/loading-container/emptyConstant.js");
 var request = require("../../../utils/request")
 import Pageable from '../../../utils/pageable'
 import PageLoad from '../../../utils/page'
+import util from '../../../utils/util'
 
 Page({
 
@@ -16,7 +17,8 @@ Page({
     page: new PageLoad(),
     releaseFocus: false,
     currentCommentClickIndex: 0,
-    commentInputValue: ''
+    commentInputValue: '',
+    submitAble: false
   },
 
   pageable: new Pageable(),
@@ -158,13 +160,14 @@ Page({
         item.comments = [...item.comments, res.data];
         that.setData({
           commentInputValue: '',
+          submitAble: false,
           releaseFocus: false
         });
         var key = "notes["+ that.data.currentCommentClickIndex + "]"
         this.setData({
           // 这里使用键值对方式赋值
           [key]: item
-          }, function () {})
+          }, function () {});
       }
     }).catch(e=>{
     }).finally(()=>{
@@ -196,6 +199,40 @@ Page({
   onBindblur(e){
     this.setData({
       releaseFocus: false
+    });
+  },
+  onLikeClick(e){
+    var that = this;
+    request.post("/inread-api/like/note"
+    ,{ 
+      noteId: e.detail.noteId,
+    }).then(res=>{
+      if(res && res.code != 0){
+        wx.showToast({
+          title: res.msg,
+          icon: "none",
+          duration: 2000
+        });
+        return;
+      }
+      wx.showToast({
+        title: "收到你的赞了",
+        icon: "none",
+        duration: 2000
+      });
+      var key = "notes["+ e.detail.index + "]";
+      var item = that.data.notes[e.detail.index];
+      item.likeNum = item.likeNum + 1;
+      this.setData({
+        // 这里使用键值对方式赋值
+        [key]: item
+      }, function () {});
+    }).catch((e)=>{
+      wx.showToast({
+        title: "出错了再赞一个试试",
+        icon: "none",
+        duration: 2000
+      });
     });
   }
 })
