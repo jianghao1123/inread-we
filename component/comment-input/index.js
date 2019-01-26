@@ -21,6 +21,10 @@ Component({
     inputValue: {
       type: String,
       value: ''
+    },
+    submitAble: {
+      type: Boolean,
+      value: false
     }
   },
 

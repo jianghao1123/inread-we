@@ -188,5 +188,14 @@ Page({
     wx.navigateTo({
       url: "../../comment/index?noteId=" + e.detail.noteId
     });
+  },
+  /**
+   * 键盘失去焦点
+   * @param {} e 
+   */
+  onBindblur(e){
+    this.setData({
+      releaseFocus: false
+    });
   }
 })

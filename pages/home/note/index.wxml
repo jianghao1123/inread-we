@@ -26,5 +26,8 @@
       </block>
     <loadmore text="{{page.nomore ? '到底了' : '正在努力加载中...'}}" icon="{{true}}" is-end="{{page.nomore}}"></loadmore>
   </scroll-view>
-  <comment-input releaseFocus="{{releaseFocus}}" bind:commentSubmit="onCommentSubmit" inputValue="{{commentInputValue}}"></comment-input>
+  <comment-input releaseFocus="{{releaseFocus}}" 
+  bind:commentSubmit="onCommentSubmit" 
+  inputValue="{{commentInputValue}}" 
+  bind:bindblur="onBindblur"></comment-input>
 </loading-container>

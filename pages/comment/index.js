@@ -26,7 +26,8 @@ Page({
     // 评论详情 如果这个不为空，是所有的评论回复列表
     comment: null,
     placeholderText: '说点什么吧',
-    submiting: false
+    submiting: false,
+    submitAble: false
   },
   pageable: new Pageable(),
   /**
@@ -44,14 +45,6 @@ Page({
       });
     }
   },
-  onPageScroll() {
-    // Do something when page scroll
-    // if(this.data.releaseFocus){
-    //   this.setData({
-    //     releaseFocus: !this.data.releaseFocus
-    //   });
-    // }
-  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -66,9 +59,6 @@ Page({
     if(this.data.comments.length > 0){
       return;
     }
-    // this.setData({
-    //   emptyType: Empty.loading
-    // });
     this.fetchComments();
   },
 
@@ -138,6 +128,13 @@ Page({
     this.fetchComments();
   },
   submitReply(opt){
+    if(!opt.detail || opt.detail.length <= 0){
+      wx.showToast({
+        title: "评论不能为空",
+        icon: "none",
+        duration: 2000
+      });
+    }
     this.data.submiting = true;
     let that = this;
     login.getInstance().checkLogin(()=>{
@@ -251,7 +248,7 @@ Page({
     let commentStr = JSON.stringify(this.data.comments[index]);
     wx.navigateTo({
       url: 'index?comment=' + commentStr + "&noteId=" + this.data.noteId
-    })
+    });
   },
   indexOf(commentId){
     let index = 0;
@@ -293,6 +290,7 @@ Page({
   },
   clearInput(){
     this.setData({
+      submitAble: false,
       commentInputValue: '',
       currentCommentId: this.data.comment ? this.data.comment.id : 0,
       currentCommentReplyUid: this.data.comment ? this.data.comment.fromUser.id : 0,

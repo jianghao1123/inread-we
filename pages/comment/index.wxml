@@ -46,5 +46,6 @@
     placeholderText="{{placeholderText}}"
     inputValue="{{commentInputValue}}"
     hidden="{{hidden}}"
-    bind:bindblur="onBindblur"></comment-input>
+    bind:bindblur="onBindblur"
+    submitAble="{{submitAble}}"></comment-input>
 </loading-container>

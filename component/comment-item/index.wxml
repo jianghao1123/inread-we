@@ -14,7 +14,7 @@
         comment="{{item.content}}" replyUser="{{item.toUser && item.toUser.id != item.fromUser.id ? item.toUser.username : ''}}"
         noteId="{{noteId}}">
             </comment-reply-item>
-            <text class="comment-more" bindtap="onMoreCommentClick">查看{{replyItemCount}}条评论</text>
+            <text class="comment-more">查看{{replyItemCount}}条评论</text>
         </view>
     </view>
 </view>
