@@ -118,12 +118,13 @@ Page({
       size: this.data.page.size,
       append: append,
       timestamp: that.data.notes.length > 0 ? that.data.notes[0].timestamp : 0
-    })
+    }, true)
     .then(res => {
       that.setData({
         notes: that.pageable.received(that, curPage, that.data.notes, res.data ? res.data.records : [], append)
       });
     }).catch(error => {
+      console.log(error)
       that.pageable.error(that, curPage == 1);
     }).finally(() => {
       that.pageable.complete(that);

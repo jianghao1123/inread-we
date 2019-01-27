@@ -8,7 +8,9 @@ let defaultConfig = {
 
 const q = queue((task, callback) => task(callback), defaultConfig.concurrency);
 
-const request = object => new defaultConfig.Promise((resolve, reject) => {
+const request = object => new defaultConfig.Promise(requestFunc(object));
+
+const requestFunc = (object)=>(resolve, reject) => {
   q.push((callback) => {
     defaultConfig.request(Object.assign({}, object, {
       success: resolve,
@@ -16,7 +18,7 @@ const request = object => new defaultConfig.Promise((resolve, reject) => {
       complete: callback,
     }));
   });
-});
+}
 
 const setConfig = (config) => {
   const hasConcurrencyChange = config.concurrency !== defaultConfig.concurrency;
@@ -29,6 +31,7 @@ const setConfig = (config) => {
 
 export {
   request,
+  requestFunc,
   setConfig,
   Promise,
 };
