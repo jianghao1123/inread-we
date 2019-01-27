@@ -100,7 +100,7 @@ Page({
     let that = this;
     request.get('/inread-api/article/detail', {
       noteId: noteId
-    }).then(res=>{
+    }, true).then(res=>{
       if(res && res.code == 0 && res.data && res.data.content){
         that.setData({
           content: res.data.content,
