@@ -3,7 +3,7 @@ import cache from 'cache';
 import { requestFunc } from './wx-request.js';
 
 var token = require('../storage/token.js')
-const API_BASE_URL = 'http://192.168.31.198:8090'
+const API_BASE_URL = 'https://inread.matrix22.com'
 
 
 function get(url, data, cacheEnable=false){

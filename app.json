@@ -2,9 +2,7 @@
   "pages": [
     "pages/home/note/index",
     "pages/comment/index",
-    "pages/index/index",
     "pages/login/index",
-    "pages/logs/logs",
     "pages/home/user/index",
     "pages/article/index"
   ],
