@@ -4,7 +4,8 @@
     "pages/comment/index",
     "pages/login/index",
     "pages/home/user/index",
-    "pages/article/index"
+    "pages/article/index",
+    "pages/home/publish/index"
   ],
   "window": {
     "navigationBarBackgroundColor": "#fae100",
