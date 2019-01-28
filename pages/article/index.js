@@ -12,7 +12,7 @@ Page({
     content: '',
     emptyType: Empty.loading,
     showSharePanel: true,
-    likeCount: '',
+    likeCount: 0,
     shareCount: '',
     commentCount: '',
     noteId: 0
@@ -105,9 +105,9 @@ Page({
         that.setData({
           content: res.data.content,
           emptyType: Empty.content,
-          likeCount: res.data.note ? res.data.note.likeNum : '',
-          shareCount: res.data.note ? res.data.note.shareNum : '',
-          commentCount: res.data.note ? res.data.note.commentNum : '',
+          likeCount: res.data.note ? res.data.note.likeNum : 0,
+          shareCount: res.data.note ? res.data.note.shareNum : 0,
+          commentCount: res.data.note ? res.data.note.commentNum : 0,
         });
       }else{
         this.setData({
@@ -149,9 +149,14 @@ Page({
     }).then(res=>{
         if(res && res.code === 0){
             this.setData({
-              likeCount: that.likeCount + 1 
-        });
-      }
+              likeCount: that.data.likeCount + 1
+          });
+          wx.showToast({
+            title: "收到你的赞了",
+            icon: "none",
+            duration: 2000
+          });
+        }
     });
   },
   onCommentClick(){

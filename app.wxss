@@ -8,7 +8,6 @@ page {
   height: 100%;
   background: #FFFFFF;
   -webkit-font-smoothing: antialiased;
-  font-family: 'PingFang SC', Helvetica, 'STHeiti STXihei', 'Microsoft YaHei', Tohoma, Arial, sans-serif;
 }
 button::after{
   border: none;
