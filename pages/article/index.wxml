@@ -2,6 +2,9 @@
 <view class="article-container" bindtap="onContainerClick">
   <loading-container
     emptyType="{{emptyType}}" type="{{type}}" bind:abnortap="onAbnorTap">	
+    <text class="title" >{{title}}</text>
+    <view class="author">{{author}}</view>
+    <image class="picture" src="{{picture}}" wx:if="{{picture}}" mode="widthFix"></image>
     <wemark md="{{content}}" link highlight type="wemark"></wemark>
     <share-panel toggle="{{showSharePanel}}" 
     bind:likeClick="onLikeClick"

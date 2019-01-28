@@ -2,4 +2,27 @@
 .article-container{
 	padding:38rpx;
 	font-family: PingFangSC-Thin, sans-serif;
+	display: flex;
+	flex-direction: column;
+}
+
+.title {
+  width: 100%;
+  font-size: 36rpx;
+  font-family: PingFangSC;
+  margin-top: 18rpx;
+  color: #000;
+}
+.picture{
+  margin-top: 36rpx;
+  width: 100%;
+  min-height: 300rpx;
+  border-radius: 4px;
+  font-weight: bold;
+}
+.author{
+  color: #000;
+  font-size: 24rpx;
+  margin-top: 28rpx;
+  font-weight: bold;
 }

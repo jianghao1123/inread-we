@@ -1,4 +1,6 @@
 /* component/note-item/index.wxss */
+@import "../icon/iconfont.wxss";
+
 .note-container {
     display: flex;
     flex-direction: column;
@@ -40,11 +42,11 @@
 }
 .quotation-l{
   margin-top: 36rpx;
-  color: #fae100;
+  color: #ffd600;
 }
 .quotation-r{
   align-self: flex-end;
-  color: #fae100;
+  color: #ffd600;
 }
 .toggle{
   font-size: 30rpx;

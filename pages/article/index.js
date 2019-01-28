@@ -15,7 +15,10 @@ Page({
     likeCount: 0,
     shareCount: '',
     commentCount: '',
-    noteId: 0
+    noteId: 0,
+    title: '',
+    picture: '',
+    author: ''
   },
 
   /**
@@ -108,6 +111,9 @@ Page({
           likeCount: res.data.note ? res.data.note.likeNum : 0,
           shareCount: res.data.note ? res.data.note.shareNum : 0,
           commentCount: res.data.note ? res.data.note.commentNum : 0,
+          title: res.data.note.title,
+          picture: res.data.note.picture,
+          author: res.data.note.author
         });
       }else{
         this.setData({
@@ -163,5 +169,12 @@ Page({
     wx.navigateTo({
       url: "../comment/index?noteId=" + this.data.noteId
     });
+  },
+  // 网络异常点击
+  onAbnorTap: function(){
+    this.setData({
+      "page.emptyType": Empty.loading
+    });
+    this.fetchArticle(this.data.noteId);
   }
 })
