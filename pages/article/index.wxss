@@ -1,6 +1,7 @@
 /* pages/article/index.wxss */
 .article-container{
-	padding:38rpx;
+  padding:38rpx;
+  color: #434343;
 	font-family: PingFangSC-Thin, sans-serif;
 	display: flex;
 	flex-direction: column;

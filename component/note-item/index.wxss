@@ -26,8 +26,9 @@
 }
 .content{
   font-size: 30rpx;
-  font-family: PingFangSC-Ultralight, sans-serif;
+  font-family: PingFangSC-Ultralight, Noto;
   padding: 14rpx 0;
+  color: #434343;
   line-height: 48rpx;
   /* display: -webkit-box;
   overflow: hidden;
