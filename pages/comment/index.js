@@ -161,7 +161,8 @@ Page({
           if(that.data.comment || res.data.toUid == 0){
             let items = [res.data];
             that.setData({
-              comments: [...items ,...that.data.comments]
+              comments: [...items ,...that.data.comments],
+              'page.emptyType': Empty.content
             });
           }else{
             let index = that.indexOf(that.data.currentCommentId);
@@ -174,8 +175,7 @@ Page({
             var key = "comments["+ index + "]"
             this.setData({
               // 这里使用键值对方式赋值
-              [key]: item,
-              'page.emptyType': Empty.content
+              [key]: item
               });
           }
           that.clearInput();
