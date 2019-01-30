@@ -13,11 +13,8 @@ export default class Pageable{
      * @param {接收到的数据} receivedData 
      * @param {刷新页面是否采用追加模式} append 
      */
-    received(context, curPage=-1, currentData, receivedData, append=false){
-      if(curPage == -1){
-          curPage = context.data.page.page;
-      }
-        // 有数据则追加
+    received(context, curPage, currentData, receivedData, append=false){
+      // 有数据则追加
       if(receivedData && receivedData.length > 0){
         if(append){
             currentData = [...receivedData, ...currentData];

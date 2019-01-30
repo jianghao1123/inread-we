@@ -53,7 +53,7 @@ Page({
     if(this.data.notes.length > 0){
       return;
     }
-    this.fetchNoteItems();
+    this.fetchNoteItems(true);
   },
 
   /**
@@ -74,7 +74,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    this.fetchNoteItems(this.data.page.page, true);
+    this.fetchNoteItems(true);
   },
 
   /**
@@ -112,12 +112,14 @@ Page({
     }
     this.data.page.loading = true;
     let that = this;
+    if(append){
+      curPage = 1;
+    }
     request.post("/inread-api/note/list"
     ,{ 
       page: curPage,
       size: this.data.page.size,
-      append: append,
-      timestamp: that.data.notes.length > 0 ? that.data.notes[0].timestamp : 0
+      stamp: append && that.data.notes.length > 0 ? that.data.notes[0].noteId : 0
     }, true)
     .then(res => {
       that.setData({
@@ -135,7 +137,7 @@ Page({
     this.setData({
       "page.emptyType": Empty.loading
     });
-    this.fetchNoteItems();
+    this.fetchNoteItems(true);
   },
   // 点击评论
   onNoteCommentClick: function(opt){
