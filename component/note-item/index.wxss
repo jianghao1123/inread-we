@@ -37,11 +37,14 @@
   -webkit-line-clamp: 5;
   -webkit-box-orient: vertical; */
 }
+.content-container{
+  margin-top: 36rpx;
+}
 .more{
   font-weight: bold;
+  flex-flow: 1;
 }
 .quotation-l{
-  margin-top: 36rpx;
   color: #ffd600;
 }
 .quotation-r{

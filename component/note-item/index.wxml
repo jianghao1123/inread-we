@@ -3,9 +3,11 @@
     <text class='date'>{{date}}</text>
     <text class="title" >{{title}}</text>
     <image class="picture" src="{{picture}}" wx:if="{{picture}}" mode="widthFix"></image>
-    <view class="iconfont icon-map icon-quotation_l quotation-l"></view>
-    <text class="content" bindtap="onContentClick">{{content}}<text wx:if="{{more}}" class="more content">更多</text></text>
-    <view class="iconfont icon-map icon-quotation_r quotation-r"></view>
+    <view class="content-container">
+      <text class="iconfont icon-map icon-quotation_l quotation-l"> \t</text>
+      <text class="content" bindtap="onContentClick">{{content}}<text wx:if="{{more}}" class="more content">更多 </text></text>
+      <text class="iconfont icon-map icon-quotation_r quotation-r"></text>
+    </view>
     <view class="operation">
       <view class="author">{{author}}</view>
       <button open-type="share" bindtap="onShareClick" data-index="{{index}}"><image class="icon-share" src="../../assets/icon_share.svg" mode="aspectFill"></image></button>
