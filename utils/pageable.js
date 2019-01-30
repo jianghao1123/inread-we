@@ -11,23 +11,18 @@ export default class Pageable{
      * @param {当前分页默认为1的时候是刷新} curPage 
      * @param {当前页面总数据} currentData 
      * @param {接收到的数据} receivedData 
-     * @param {刷新页面是否采用追加模式} append 
      */
-    received(context, curPage, currentData, receivedData, append=false){
+    received(context, curPage, currentData, receivedData){
       // 有数据则追加
       if(receivedData && receivedData.length > 0){
-        if(append){
-            currentData = [...receivedData, ...currentData];
+        // 刷新直接替换原数据
+        if(curPage == 1){
+            context.setData({
+                'page.nomore': false
+            });
+            currentData = receivedData;
         }else{
-            // 刷新且不是追加数据，直接替换原数据
-            if(curPage == 1){
-                context.setData({
-                    'page.nomore': false
-                });
-                currentData = receivedData;
-            }else{
-                currentData = [...currentData, ...receivedData];
-            }
+            currentData = [...currentData, ...receivedData];
         }
       }
       // 初始化页面
@@ -42,7 +37,7 @@ export default class Pageable{
             });
         }
       }
-      if(!append && (!receivedData || receivedData.length < context.data.page.size)){
+      if(!receivedData || receivedData.length < context.data.page.size){
         // 防止nomore先展示出来
         setTimeout(()=>{
             context.setData({
@@ -50,7 +45,7 @@ export default class Pageable{
             });
         }, 200);
       }
-      if(!append && receivedData && receivedData.length > 0){
+      if(receivedData && receivedData.length > 0){
           if(curPage == 1){
             context.data.page.page = 1;
           }

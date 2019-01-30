@@ -1,51 +1,53 @@
 <!--pages/comment/index.wxml-->
-<loading-container class="loading-container" 
-  emptyType="{{page.emptyType}}" type="{{type}}" bind:abnortap="onAbnorTap">
-  <block wx:if="{{comment}}">
-    <view class="comment-item-divider comment-item-header">
-      <comment-item 
-            avatar="{{comment.fromUser ? comment.fromUser.avatar : ''}}"
-            username="{{comment.fromUser ? comment.fromUser.username : ''}}"
-            date="{{comment.createTime}}"
-            content="{{comment.content}}"
-            commentId="{{comment.id}}"
-            likeNum="{{comment.likeNum}}"
-            uid="{{comment.fromUser.id}}"
+<view >
+  <loading-container class="loading-container" 
+    emptyType="{{page.emptyType}}" type="{{type}}" bind:abnortap="onAbnorTap">
+    <block wx:if="{{comment}}">
+      <view class="comment-item-divider comment-item-header">
+        <comment-item 
+              avatar="{{comment.fromUser ? comment.fromUser.avatar : ''}}"
+              username="{{comment.fromUser ? comment.fromUser.username : ''}}"
+              date="{{comment.createTime}}"
+              content="{{comment.content}}"
+              commentId="{{comment.id}}"
+              likeNum="{{comment.likeNum}}"
+              uid="{{comment.fromUser.id}}"
+              bind:clickReply="onClickReply"
+              bind:clickLike="onClickLike"
+              replyItemCount="{{comment.replyItemCount}}"
+              bind:clickMoreComment="onClickMoreComment"
+              >
+        </comment-item>
+      </view>
+        <view class="comment-header-divider"></view>
+      </block>
+      <view wx:for="{{comments}}" wx:key="{{index}}" class="comment-item-divider">
+        <comment-item 
+            avatar="{{item.fromUser ? item.fromUser.avatar : ''}}"
+            username="{{item.fromUser ? item.fromUser.username : ''}}"
+            date="{{item.createTime}}"
+            content="{{item.content}}"
+            replyItems="{{item.replyItems}}"
+            uid="{{item.fromUser.id}}"
+            bind:replyItemClick="onReplyItemClick"
+            commentId="{{item.id}}"
+            likeNum="{{item.likeNum}}"
             bind:clickReply="onClickReply"
             bind:clickLike="onClickLike"
-            replyItemCount="{{comment.replyItemCount}}"
+            replyTo="{{item.toUser && item.toUser.id != item.fromUser.id ? item.toUser.username : ''}}"
+            replyItemCount="{{item.replyItemCount}}"
             bind:clickMoreComment="onClickMoreComment"
             >
-      </comment-item>
-    </view>
-      <view class="comment-header-divider"></view>
-    </block>
-    <view wx:for="{{comments}}" wx:key="{{index}}" class="comment-item-divider">
-      <comment-item 
-          avatar="{{item.fromUser ? item.fromUser.avatar : ''}}"
-          username="{{item.fromUser ? item.fromUser.username : ''}}"
-          date="{{item.createTime}}"
-          content="{{item.content}}"
-          replyItems="{{item.replyItems}}"
-          uid="{{item.fromUser.id}}"
-          bind:replyItemClick="onReplyItemClick"
-          commentId="{{item.id}}"
-          likeNum="{{item.likeNum}}"
-          bind:clickReply="onClickReply"
-          bind:clickLike="onClickLike"
-          replyTo="{{item.toUser && item.toUser.id != item.fromUser.id ? item.toUser.username : ''}}"
-          replyItemCount="{{item.replyItemCount}}"
-          bind:clickMoreComment="onClickMoreComment"
-          >
-      </comment-item>
-    </view>
-    <loadmore text="{{page.nomore ? '到底了' : '正在努力加载中...'}}" icon="{{true}}" is-end="{{page.nomore}}"></loadmore>
-    <view class="comment-input"></view>
-    <comment-input releaseFocus="{{releaseFocus}}" 
-    bind:commentSubmit="submitReply" 
-    placeholderText="{{placeholderText}}"
-    inputValue="{{commentInputValue}}"
-    hidden="{{hidden}}"
-    bind:bindblur="onBindblur"
-    submitAble="{{submitAble}}"></comment-input>
-</loading-container>
+        </comment-item>
+      </view>
+      <loadmore text="{{page.nomore ? '到底了' : '正在努力加载中...'}}" icon="{{true}}" is-end="{{page.nomore}}"></loadmore>
+  </loading-container>
+  <view class="comment-input"></view>
+      <comment-input releaseFocus="{{releaseFocus}}" 
+      bind:commentSubmit="submitReply" 
+      placeholderText="{{placeholderText}}"
+      inputValue="{{commentInputValue}}"
+      hidden="{{hidden}}"
+      bind:bindblur="onBindblur"
+      submitAble="{{submitAble}}"></comment-input>
+</view>

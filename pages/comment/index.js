@@ -174,7 +174,8 @@ Page({
             var key = "comments["+ index + "]"
             this.setData({
               // 这里使用键值对方式赋值
-              [key]: item
+              [key]: item,
+              'page.emptyType': Empty.content
               });
           }
           that.clearInput();

@@ -53,7 +53,7 @@ Page({
     if(this.data.notes.length > 0){
       return;
     }
-    this.fetchNoteItems(true);
+    this.fetchNoteItems(1);
   },
 
   /**
@@ -74,7 +74,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    this.fetchNoteItems(true);
+    this.fetchNoteItems(1);
   },
 
   /**
@@ -104,26 +104,21 @@ Page({
   /**
    * 
    * @param {当前页} curPage 
-   * @param {是否追加数据，true会忽略curPage} append 
    */
-  fetchNoteItems: function (curPage=this.data.page.page, append = false) {
+  fetchNoteItems: function (curPage=this.data.page.page) {
     if(this.data.page.loading){
       return;
     }
     this.data.page.loading = true;
     let that = this;
-    if(append){
-      curPage = 1;
-    }
     request.post("/inread-api/note/list"
     ,{ 
       page: curPage,
-      size: this.data.page.size,
-      stamp: append && that.data.notes.length > 0 ? that.data.notes[0].noteId : 0
-    }, true)
+      size: this.data.page.size
+    })
     .then(res => {
       that.setData({
-        notes: that.pageable.received(that, curPage, that.data.notes, res.data ? res.data.records : [], append)
+        notes: that.pageable.received(that, curPage, that.data.notes, res.data ? res.data.records : [])
       });
     }).catch(error => {
       console.log(error)
@@ -137,7 +132,7 @@ Page({
     this.setData({
       "page.emptyType": Empty.loading
     });
-    this.fetchNoteItems(true);
+    this.fetchNoteItems(1);
   },
   // 点击评论
   onNoteCommentClick: function(opt){
